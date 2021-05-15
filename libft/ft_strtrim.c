@@ -6,7 +6,7 @@
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 23:14:47 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/14 16:06:23 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/05/15 13:32:40 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char		*ft_strtrim(char const *s1, char const *set)
 	res_len = 0;
 	while (*s1 && ft_strchr(set, *s1))
 		s1++;
-	while (end != s1 && ft_strchr(set, *end))
+	while (end > s1 && ft_strchr(set, *end))
 		end--;
 	while (*s1 && s1 + res_len <= end)
 		res_len++;

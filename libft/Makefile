@@ -2,9 +2,9 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -f
-INC = includes
-TARGET = libft.a
-SRCS_DIR = srcs/
+INC = .
+NAME = libft.a
+SRCS_DIR = ./
 
 SRCS = $(SRCS_DIR)ft_memset.c \
 	   $(SRCS_DIR)ft_strrchr.c $(SRCS_DIR)ft_bzero.c \
@@ -28,22 +28,33 @@ SRCS = $(SRCS_DIR)ft_memset.c \
 	   $(SRCS_DIR)ft_lstlast.c $(SRCS_DIR)ft_lstadd_back.c \
 	   $(SRCS_DIR)ft_lstdelone.c $(SRCS_DIR)ft_lstclear.c \
 	   $(SRCS_DIR)ft_lstiter.c $(SRCS_DIR)ft_lstmap.c
+BONUS_SRCS =
 OBJS = $(SRCS:.c=.o)
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
-all: $(TARGET)
+ifdef WITH_BONUS
+	OBJ_FILES = $(OBJS) $(BONUS_OBJS)
+else
+	OBJ_FILES = $(OBJS)
+endif
 
-$(TARGET): $(OBJS)
-	$(AR) $@ $(OBJS)
+all: $(NAME)
+
+$(NAME): $(OBJ_FILES)
+	$(AR) $@ $^
+
+bonus:
+	make WITH_BONUS=1 all
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC)
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJ_FILES)
 
 fclean: clean
-	$(RM) $(TARGET)
+	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

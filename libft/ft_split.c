@@ -6,7 +6,7 @@
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 16:54:18 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/13 12:08:50 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/05/15 18:33:01 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ char			**ft_split(char const *s, char c)
 	char			**res;
 	int				i;
 
+	if (!s)
+		return (0);
 	word_nmb = ft_word_count(s, c);
 	if (!(res = (char **)malloc(sizeof(char *) * (word_nmb + 1))))
 		return (0);

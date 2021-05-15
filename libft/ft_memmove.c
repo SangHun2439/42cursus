@@ -1,20 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/14 17:13:56 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/14 17:14:45 by sangjeon         ###   ########.fr       */
+/*   Created: 2021/05/11 16:35:24 by sangjeon          #+#    #+#             */
+/*   Updated: 2021/05/15 17:55:40 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void		*ft_memmove(void *dst, const void *src, size_t len)
 {
-	while (*s)
-		write(fd, s++, 1);
-	write(fd, "\n", 1);
+	char		*d_tmp;
+	const char	*s_tmp;
+
+	if (!dst && !src)
+		return (dst);
+	d_tmp = dst;
+	s_tmp = src;
+	if (src >= dst)
+	{
+		while (len)
+		{
+			*d_tmp++ = *s_tmp++;
+			len--;
+		}
+	}
+	else
+	{
+		while (len)
+		{
+			len--;
+			d_tmp[len] = s_tmp[len];
+		}
+	}
+	return (dst);
 }

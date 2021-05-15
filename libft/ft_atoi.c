@@ -6,7 +6,7 @@
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:40:20 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/13 12:30:45 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/05/15 18:29:29 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	ft_isspace(char chr)
 int			ft_atoi(const char *str)
 {
 	int			sign;
-	int			res;
+	long long	res;
 
 	sign = 1;
 	res = 0;
@@ -47,10 +47,13 @@ int			ft_atoi(const char *str)
 		str++;
 	while (*str && *str >= '0' && *str <= '9')
 	{
+		if (res * sign > 2147483647)
+			return (-1);
+		if (res * sign < -2147483648)
+			return (0);
 		res *= 10;
 		res += *str - '0';
 		str++;
 	}
-	res *= sign;
-	return (res);
+	return (res * sign);
 }

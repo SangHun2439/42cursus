@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/12 12:43:41 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/12 13:54:24 by sangjeon         ###   ########.fr       */
+/*   Created: 2021/05/11 09:40:09 by sangjeon          #+#    #+#             */
+/*   Updated: 2021/05/15 18:43:10 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strrchr(const char *s, int c)
 {
-	size_t	res_len;
-	char	*dup;
+	char	chr_c;
 	char	*res;
 
-	while (start-- && *s)
+	res = 0;
+	chr_c = (char)c;
+	while (*s)
+	{
+		if (*s == chr_c)
+			res = (char *)s;
 		s++;
-	res_len = ft_strlen(s);
-	res_len = res_len > len ? len : res_len;
-	if (!(res = (char *)malloc(sizeof(char) * (res_len + 1))))
-		return (0);
-	dup = res;
-	while (res_len--)
-		*dup++ = *s++;
-	*dup = '\0';
+	}
+	if (!chr_c)
+		res = (char *)s;
 	return (res);
 }

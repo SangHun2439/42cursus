@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/11 16:35:24 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/11 17:34:20 by sangjeon         ###   ########.fr       */
+/*   Created: 2021/02/26 01:13:53 by sangjeon          #+#    #+#             */
+/*   Updated: 2021/05/15 16:53:02 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memmove(void *dst, const void *src, size_t len)
+size_t			ft_strlcat(char *restrict dst, const char *restrict src,
+		size_t dstsize)
 {
-	char		*d_tmp;
-	const char	*s_tmp;
+	size_t			idx;
 
-	if (!dst && !src)
-		return (dst);
-	d_tmp = dst;
-	s_tmp = src;
-	if (src >= dst)
+	idx = 0;
+	while (dst[idx] && idx + 1 < dstsize)
+		idx++;
+	if (dst[idx])
+		return (dstsize + ft_strlen(src));
+	while (*src && idx + 1 < dstsize)
+		dst[idx++] = *src++;
+	dst[idx] = '\0';
+	while (*src)
 	{
-		while (len--)
-			*d_tmp++ = *s_tmp++;
+		src++;
+		idx++;
 	}
-	else
-	{
-		d_tmp += len;
-		s_tmp += len;
-		while (len--)
-			*--d_tmp = *--s_tmp;
-	}
-	return (dst);
+	return (idx);
 }
