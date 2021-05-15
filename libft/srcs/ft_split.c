@@ -6,7 +6,7 @@
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 16:54:18 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/13 00:39:31 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/05/13 12:08:50 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static size_t	ft_word_count(char const *s, char c)
 	return (counts);
 }
 
-char			*ft_str_cpy(char const *str, size_t len)
+static char		*ft_str_cpy(char const *str, size_t len)
 {
 	char			*res;
 	size_t			i;
@@ -55,7 +55,8 @@ char			*ft_str_cpy(char const *str, size_t len)
 	return (res);
 }
 
-int				ft_do_split(char **res, char const *s, char c, size_t word_nmb)
+static int		ft_do_split(char **res, char const *s, char c,
+		size_t word_nmb)
 {
 	size_t			i;
 	size_t			word_len;

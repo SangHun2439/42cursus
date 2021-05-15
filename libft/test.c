@@ -6,7 +6,7 @@
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 09:16:17 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/13 00:38:11 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/05/14 16:47:15 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -458,15 +458,11 @@ int		main()
 	printf("\n======strtrim======\n");
 	char *trimtest;
 
-	printf("%s\n", trimtest = ft_strtrim("my name is brad", "a"));
+	printf("%s\n", trimtest = ft_strtrim("   my name is brad", "a"));
 	free(trimtest);
-	printf("%s\n", trimtest = ft_strtrim("my name is brad", "x"));
+	printf("%s\n", trimtest = ft_strtrim("  my name is brad  ", " m"));
 	free(trimtest);
-	printf("%s\n", trimtest = ft_strtrim("my name is brad", " "));
-	free(trimtest);
-	printf("%s\n", trimtest = ft_strtrim("my name is brad", "ra"));
-	free(trimtest);
-	printf("%s\n", trimtest = ft_strtrim("my name is brad", "s "));
+	printf("%s\n", trimtest = ft_strtrim("  my name is brad   ", " "));
 	free(trimtest);
 	printf("%s\n", trimtest = ft_strtrim("", "a"));
 	free(trimtest);
@@ -484,5 +480,35 @@ int		main()
 		res_split++;
 	}
 
+	printf("\n======atoi======\n");
+	printf("%d\n", ft_atoi("--1234"));
+	printf("%d\n", ft_atoi("   345"));
+	printf("%d\n", ft_atoi("\n  \t \r123"));
+	printf("%d\n", ft_atoi("-123"));
+	printf("%d\n", ft_atoi("+123"));
+	printf("%d\n", ft_atoi("+abcde"));
+	printf("%d\n", ft_atoi("+111abcde"));
+	printf("%d\n", ft_atoi("- 123"));
+	printf("%d\n", ft_atoi("+12a3"));
+	printf("%d\n", ft_atoi("  \t  -555"));
+	printf("%d\n", ft_atoi("  ++111abcde"));
+
+	printf("\n!!!!!!answer!!!!!!\n");
+	printf("%d\n", atoi("--1234"));
+	printf("%d\n", atoi("   345"));
+	printf("%d\n", atoi("\n  \t \r123"));
+	printf("%d\n", atoi("-123"));
+	printf("%d\n", atoi("+123"));
+	printf("%d\n", atoi("+abcde"));
+	printf("%d\n", atoi("+111abcde"));
+	printf("%d\n", ft_atoi("- 123"));
+	printf("%d\n", ft_atoi("+12a3"));
+	printf("%d\n", ft_atoi("  \t  -555"));
+	printf("%d\n", ft_atoi("  ++111abcde"));
+
+	printf("\n======itoa======\n");
+	printf("%s\n", ft_itoa(-2147483648));
+	printf("%s\n", ft_itoa(2147483647));
+	printf("%s\n", ft_itoa(0));
 	return (0);
 }
