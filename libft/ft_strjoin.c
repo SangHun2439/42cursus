@@ -6,7 +6,7 @@
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:02 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/15 18:32:27 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/05/17 10:43:32 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*dup;
 	char	*res;
 
-	if (!s1)
+	if (!s1 && !s2)
 		return (0);
+	if (!s1)
+		return (ft_strdup(s2));
 	if (!s2)
 		return (ft_strdup(s1));
 	res_len = ft_strlen(s1) + ft_strlen(s2);
