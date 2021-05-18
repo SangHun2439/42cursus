@@ -6,14 +6,13 @@
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 14:10:01 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/11 14:39:54 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/05/18 13:56:41 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void				*ft_memccpy(void *restrict dst, const void *restrict src,
-		int c, size_t n)
+void				*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
 	unsigned char		*d_tmp;
 	const unsigned char	*s_tmp;

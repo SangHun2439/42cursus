@@ -6,7 +6,7 @@
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 16:54:18 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/15 18:33:01 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/05/18 13:54:55 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,10 @@ char			**ft_split(char const *s, char c)
 	{
 		i = 0;
 		while (res[i])
+		{
 			free(res[i]);
+			i++;
+		}
 		free(res);
 		return (0);
 	}
