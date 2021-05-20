@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 16:40:32 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/20 22:34:57 by sangjeon         ###   ########.fr       */
+/*   Created: 2021/05/20 22:20:09 by sangjeon          #+#    #+#             */
+/*   Updated: 2021/05/20 22:35:31 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int			get_line(char **remainder, int fd, char **line, char *nl)
 {
