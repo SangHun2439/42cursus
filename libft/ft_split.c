@@ -6,13 +6,13 @@
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 16:54:18 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/18 13:54:55 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/08/10 18:54:51 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_issep(const char cha, const char c)
+static int	ft_issep(const char cha, const char c)
 {
 	if (cha == c)
 		return (1);
@@ -38,12 +38,13 @@ static size_t	ft_word_count(char const *s, char c)
 	return (counts);
 }
 
-static char		*ft_str_cpy(char const *str, size_t len)
+static char	*ft_str_cpy(char const *str, size_t len)
 {
 	char			*res;
 	size_t			i;
 
-	if (!(res = (char *)malloc(sizeof(char) * (len + 1))))
+	res = (char *)malloc(sizeof(char) * (len + 1));
+	if (!res)
 		return (0);
 	i = 0;
 	while (i < len)
@@ -55,7 +56,7 @@ static char		*ft_str_cpy(char const *str, size_t len)
 	return (res);
 }
 
-static int		ft_do_split(char **res, char const *s, char c,
+static int	ft_do_split(char **res, char const *s, char c,
 		size_t word_nmb)
 {
 	size_t			i;
@@ -71,11 +72,9 @@ static int		ft_do_split(char **res, char const *s, char c,
 			tmp = s;
 			while (*s && !ft_issep(*s++, c))
 				word_len++;
-			if (!(res[i] = ft_str_cpy(tmp, word_len)))
-			{
-				res[i] = 0;
+			res[i] = ft_str_cpy(tmp, word_len);
+			if (!res[i])
 				return (0);
-			}
 			i++;
 		}
 		else
@@ -85,7 +84,7 @@ static int		ft_do_split(char **res, char const *s, char c,
 	return (1);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	size_t			word_nmb;
 	char			**res;
@@ -94,7 +93,8 @@ char			**ft_split(char const *s, char c)
 	if (!s)
 		return (0);
 	word_nmb = ft_word_count(s, c);
-	if (!(res = (char **)malloc(sizeof(char *) * (word_nmb + 1))))
+	res = (char **)malloc(sizeof(char *) * (word_nmb + 1));
+	if (!res)
 		return (0);
 	if (!ft_do_split(res, s, c, word_nmb))
 	{

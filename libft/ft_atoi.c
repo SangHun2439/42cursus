@@ -6,7 +6,7 @@
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:40:20 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/15 18:29:29 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/08/10 19:20:39 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_isspace(char chr)
 	return (0);
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int			sign;
 	long long	res;

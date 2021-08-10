@@ -6,7 +6,7 @@
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 17:34:20 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/14 17:38:44 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/08/10 18:33:14 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*res;
 
-	if (!(res = (t_list *)malloc(sizeof(t_list))))
+	res = (t_list *)malloc(sizeof(t_list));
+	if (!res)
 		return (0);
 	res->content = content;
 	res->next = 0;

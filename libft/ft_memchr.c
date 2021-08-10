@@ -6,13 +6,13 @@
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 17:59:36 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/11 18:15:38 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/08/10 18:55:25 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			*ft_memchr(const void *s, int c, size_t n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
 	const unsigned char	*s_tmp;
 	unsigned char		uc_c;

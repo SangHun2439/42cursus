@@ -6,7 +6,7 @@
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 12:03:31 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/14 17:22:07 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/08/10 20:11:06 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,31 @@ static int	digit_len(int n)
 	return (digit);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	int			minus;
-	int			num;
+	long long	num;
 	char		*res;
 	size_t		res_len;
 
-	minus = 0;
-	if (n < 0)
-		minus = 1;
-	res_len = digit_len(n) + minus;
-	if (!(res = (char *)malloc(sizeof(char) * (res_len + 1))))
-		return (0);
-	res[res_len] = '\0';
-	if (n == 0)
-		*res = '0';
-	while (n != 0)
+	num = n;
+	res_len = digit_len(n);
+	if (num < 0)
 	{
-		num = minus ? -(n % 10) : (n % 10);
-		n = n / 10;
-		res[res_len - 1] = num + '0';
-		res_len--;
+		res_len++;
+		num *= -1;
 	}
-	if (minus)
-		*res = '-';
+	res = (char *)malloc(sizeof(char) * (res_len + 1));
+	if (!res)
+		return (0);
+	res[res_len--] = '\0';
+	if (num == 0)
+		res[res_len--] = '0';
+	while (num != 0)
+	{
+		res[res_len--] = (num % 10) + '0';
+		num /= 10;
+	}
+	if (res_len == 0)
+		res[res_len] = '-';
 	return (res);
 }

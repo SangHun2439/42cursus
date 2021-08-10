@@ -6,13 +6,13 @@
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 17:53:17 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/14 17:55:10 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/08/10 18:45:44 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_lstsize(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
 	int		len;
 

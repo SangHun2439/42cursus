@@ -6,7 +6,7 @@
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 11:22:10 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/11 14:35:54 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/08/10 18:24:49 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static size_t	static_strlen(const char *s)
 	return (len);
 }
 
-static int		static_strncmp(const char *s1, const char *s2, size_t n)
+static int	static_strncmp(const char *s1, const char *s2, size_t n)
 {
 	while (n != 0 && (*s1 || *s2))
 	{
@@ -35,7 +35,7 @@ static int		static_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-char			*ft_strnstr(const char *haystack,
+char	*ft_strnstr(const char *haystack,
 		const char *needle, size_t len)
 {
 	size_t			str_size;

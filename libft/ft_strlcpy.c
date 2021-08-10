@@ -6,7 +6,7 @@
 /*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 12:52:30 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/18 13:57:40 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/08/10 18:33:54 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static size_t	in_strlen(const char *str)
 	return (len);
 }
 
-size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t			len;
 	size_t			idx;
