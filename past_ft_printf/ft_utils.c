@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 07:31:48 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/10 17:48:59 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/06/25 19:17:08 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,7 @@ void	pad_printf(t_conf *p_conf, int *size)
 {
 	char	pad;
 
-	pad = ' ';
-	if (p_conf->flag & ZEROPAD)
-		pad = '0';
+	pad = p_conf->flag & ZEROPAD ? '0' : ' ';
 	while (p_conf->width > p_conf->arg_len)
 	{
 		count_putchar_fd(pad, FD, size);

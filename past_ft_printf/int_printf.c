@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 17:14:06 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/10 17:13:00 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/06/25 22:16:31 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,31 +55,4 @@ void			count_putnbr_base(long long nbr,
 	while ((p_conf->prec)-- > 0)
 		count_putchar_fd('0', FD, size);
 	nbr_deal(u_nbr, base, baselen, size);
-}
-
-int		int_printf(va_list *p_arg, t_conf *p_conf)
-{
-	int			size;
-	long long	arg_val;
-	char		*base;
-
-	set_intarg(p_arg, p_conf, &arg_val, &base);
-	if (!arg_val && !(p_conf->spec == 'p'))
-		p_conf->flag &= ~SPECIAL;
-	size = 0;
-	if (p_conf->flag & ZEROPAD)
-	{
-		p_conf->flag &= ~ZEROPAD;
-		if (!(p_conf->flag & LEFT) && (p_conf->flag & SPECIAL)
-				&& (p_conf->prec == -1))
-			p_conf->prec = p_conf->width - 2;
-		else if (!(p_conf->flag & LEFT) && (p_conf->prec == -1))
-			p_conf->prec = p_conf->width;
-	}
-	p_conf->arg_len = ft_intlen(arg_val, base, p_conf);
-	if (!(p_conf->flag & LEFT))
-		pad_printf(p_conf, &size);
-	count_putnbr_base(arg_val, base, p_conf, &size);
-	pad_printf(p_conf, &size);
-	return (size);
 }

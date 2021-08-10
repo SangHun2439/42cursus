@@ -6,11 +6,49 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 14:07:28 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/10 17:19:13 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/07/09 15:56:39 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		ft_wclen(int wc)
+{
+	if (wc <= 0x7F)
+		return (1);
+	else if (wc <= 0x7FF)
+		return (2);
+	else if (wc <= 0xFFFF)
+		return (3);
+	else if (wc <= 0x1FFFFF)
+		return (4);
+	return (-1);
+}
+
+int		ft_wstrnlen(wchar_t const *wstr, int n)
+{
+	int		res;
+	int		len;
+	char	defal;
+
+	defal = 0;
+	if (n == -1)
+		defal = 1;
+	res = 0;
+	while (*wstr && n)
+	{
+		len = ft_wclen((int)*wstr);
+		if (defal || n >= len)
+		{
+			res += len;
+			n -= len;
+			wstr++;
+		}
+		else
+			break;
+	}
+	return (res);
+}
 
 void	special_len(t_conf *p_conf, int *p_res)
 {
@@ -57,8 +95,16 @@ void		set_intarg(va_list *p_arg, t_conf *p_conf,
 		*p_arg_val = (long long)va_arg(*p_arg, void *);
 		p_conf->flag |= SPECIAL;
 	}
-	else
+	else if (!p_conf->length)
 		*p_arg_val = va_arg(*p_arg, int);
+	else if (p_conf->length & L)
+		*p_arg_val = va_arg(*p_arg, long);
+	else if (p_conf->length & LL)
+		*p_arg_val = va_arg(*p_arg, long long);
+	else if (p_conf->length & H)
+		*p_arg_val = (short)va_arg(*p_arg, int);
+	else if (p_conf->length &HH)
+		*p_arg_val = (char)va_arg(*p_arg, int);
 	if (p_conf->spec == 'x' || p_conf->spec == 'p')
 		*p_base = "0123456789abcdef";
 	if (p_conf->spec == 'X')
