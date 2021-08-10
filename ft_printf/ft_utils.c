@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 07:31:48 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/06/12 18:10:17 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/06/25 19:17:08 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,6 @@ void	count_putchar_fd(char c, int fd, int *size)
 	*size = *size + 1;
 }
 
-char	*ft_strndup(char const *str, size_t len)
-{
-	char		*res;
-	size_t		i;
-
-	if (!(res = (char *)malloc(sizeof(char) * (len + 1))))
-		return (0);
-	i = 0;
-	while (i < len && str[i])
-	{
-		res[i] = str[i];
-		i++;
-	}
-	res[i] = '\0';
-	return (res);
-}
-
 int		addr_mov_atoi(const char **s)
 {
 	int		res;
@@ -59,28 +42,31 @@ int		addr_mov_atoi(const char **s)
 	return (res);
 }
 
-void	ft_putnbr_base(int nbr, char *base)
+void	special_printf(t_conf *p_conf, int *size)
 {
-	int		len;
+	if (p_conf->flag & SPECIAL)
+	{
+		if (p_conf->spec == 'p' || p_conf->spec == 'x')
+		{
+			count_putchar_fd('0', FD, size);
+			count_putchar_fd('x', FD, size);
+		}
+		if (p_conf->spec == 'X')
+		{
+			count_putchar_fd('0', FD, size);
+			count_putchar_fd('X', FD, size);
+		}
+	}
+}
 
-	len = (int)ft_strlen(base);
-	if (nbr == -2147483648)
+void	pad_printf(t_conf *p_conf, int *size)
+{
+	char	pad;
+
+	pad = p_conf->flag & ZEROPAD ? '0' : ' ';
+	while (p_conf->width > p_conf->arg_len)
 	{
-		write(1, &"-", 1);
-		ft_putnbr_base((nbr / len) * -1, base);
-		ft_putnbr_base((nbr % len) * -1, base);
-		return ;
+		count_putchar_fd(pad, FD, size);
+		p_conf->width--;
 	}
-	if (nbr < 0)
-	{
-		write(1, &"-", 1);
-		nbr = -nbr;
-	}
-	if (nbr < len)
-	{
-		write(1, base + nbr, 1);
-		return ;
-	}
-	ft_putnbr_base(nbr / len, base);
-	ft_putnbr_base(nbr % len, base);
 }

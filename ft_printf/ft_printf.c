@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 13:34:02 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/06/10 18:45:57 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/06/25 23:30:06 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,58 +21,55 @@ void	get_conf(const char **p_format, t_conf *p_conf, va_list *p_arg)
 	get_spec(p_format, p_conf);
 }
 
-void	intersection(va_list *p_arg, t_conf *p_conf, int *res)
+int		intersection(va_list *p_arg, t_conf *p_conf, int res)
 {
-	int		(*f_arr[128])(va_list *, t_conf *);
-
-	if (!(p_conf->spec))
-	{
-		*res = -1;
-		return ;
-	}
 	if (p_conf->flag & LEFT)
 		p_conf->flag &= ~ZEROPAD;
-	f_arr['c'] = &c_printf;
-	f_arr['s'] = &s_printf;
-	f_arr['p'] = &p_printf;
-	f_arr['d'] = &d_printf;
-	f_arr['i'] = &i_printf;
-	f_arr['u'] = &u_printf;
-	f_arr['x'] = &x_printf;
-	f_arr['X'] = &cx_printf;
-	f_arr['%'] = &per_printf;
-	f_arr['n'] = &n_printf;
-	f_arr['f'] = &f_printf;
-	f_arr['g'] = &g_printf;
-	f_arr['e'] = &e_printf;
-	*res = f_arr[(int)p_conf->spec](p_arg, p_conf);
+	if (p_conf->spec == 'c' && p_conf->length & L)
+		return (wc_printf(p_arg, p_conf));
+	else if (p_conf->spec == 'c')
+		return (c_printf(p_arg, p_conf));
+	else if (p_conf->spec == 's' && p_conf->length & L)
+		return (ws_printf(p_arg, p_conf));
+	else if (p_conf->spec == 's')
+		return (s_printf(p_arg, p_conf));
+	else if (ft_strchr("diuxXp", p_conf->spec))
+		return (int_printf(p_arg, p_conf));
+	else if (ft_strchr("fge", p_conf->spec))
+		return (dec_printf(p_arg, p_conf));
+	else if (p_conf->spec == '%')
+		return (per_printf(p_conf));
+	else if (p_conf->spec == 'n')
+		return (n_printf(p_arg, p_conf, res));
+	return (-1);
+}
+
+void	init_conf(t_conf *p_conf)
+{
+	p_conf->flag = 0;
+	p_conf->width = -1;
+	p_conf->prec = -1;
+	p_conf->length = 0;
+	p_conf->spec = 0;
 }
 
 int		do_printf(va_list *p_arg, const char *format)
 {
 	int		res;
+	int		arg_len;
 	t_conf	conf;
 
-	conf.flag = 0;
-	conf.width = -1;
-	conf.prec = -1;
-	conf.length = 0;
-	conf.spec = 0;
 	res = 0;
 	while (*format)
 	{
 		if (*format == '%')
 		{
+			init_conf(&conf);
 			format++;
 			get_conf(&format, &conf, p_arg);
-			printf("flag : %d\n", conf.flag);
-			printf("width : %d\n", conf.width);
-			printf("prec : %d\n", conf.prec);
-			printf("length : %d\n", conf.length);
-			printf("spec : %c\n", conf.spec);
-			intersection(p_arg, &conf, &res);
-			if (res < 0)
-				return (res);
+			if ((arg_len = intersection(p_arg, &conf, res)) < 0)
+				return (arg_len);
+			res += arg_len;
 		}
 		else
 		{

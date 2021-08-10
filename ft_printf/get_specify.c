@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 19:02:53 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/06/10 18:47:31 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/06/25 23:22:38 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	get_prec(const char **p_format, t_conf *p_conf, va_list *p_arg)
 			if (p_conf->prec < 0)
 				p_conf->prec = -1;
 		}
-		else if (ft_isdigit(**p_format))
+		else
 			p_conf->prec = addr_mov_atoi(p_format);
 	}
 }
@@ -93,5 +93,7 @@ void	get_spec(const char **p_format, t_conf *p_conf)
 	{
 		p_conf->spec = **p_format;
 		*p_format = *p_format + 1;
+		if (p_conf->spec == 'd' || p_conf->spec == 'i')
+			p_conf->flag |= SIGN;
 	}
 }
