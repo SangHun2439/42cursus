@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   int_printf.c                                       :+:      :+:    :+:   */
+/*   int_printf_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/22 17:14:06 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/11 16:03:47 by sangjeon         ###   ########.fr       */
+/*   Created: 2021/08/11 17:04:45 by sangjeon          #+#    #+#             */
+/*   Updated: 2021/08/11 17:04:51 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 void	sign_deal(t_conf *p_conf, int *size, long long nbr)
 {

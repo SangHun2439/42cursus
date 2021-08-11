@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils2.c                                        :+:      :+:    :+:   */
+/*   ft_utils2_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/20 14:07:28 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/10 20:42:49 by sangjeon         ###   ########.fr       */
+/*   Created: 2021/08/11 17:03:50 by sangjeon          #+#    #+#             */
+/*   Updated: 2021/08/11 17:03:56 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 void	special_len(t_conf *p_conf, int *p_res)
 {

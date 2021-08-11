@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_specify.c                                      :+:      :+:    :+:   */
+/*   get_specify_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/25 19:02:53 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/11 16:00:53 by sangjeon         ###   ########.fr       */
+/*   Created: 2021/08/11 17:04:21 by sangjeon          #+#    #+#             */
+/*   Updated: 2021/08/11 17:04:29 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 void	get_flag(const char **p_format, t_conf *p_conf)
 {

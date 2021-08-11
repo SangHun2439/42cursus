@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/21 13:34:02 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/11 16:02:41 by sangjeon         ###   ########.fr       */
+/*   Created: 2021/08/11 17:02:35 by sangjeon          #+#    #+#             */
+/*   Updated: 2021/08/11 17:02:45 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 void	get_conf(const char **p_format, t_conf *p_conf)
 {
