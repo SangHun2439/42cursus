@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 17:14:06 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/11 16:03:47 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/08/11 19:08:29 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	count_putnbr_base(long long nbr, \
 	special_printf(p_conf, size);
 	while ((p_conf->prec)-- > 0)
 		count_putchar_fd('0', FD, size);
-	nbr_deal(u_nbr, base, baselen, size);
+	if (p_conf->arg_len)
+		nbr_deal(u_nbr, base, baselen, size);
 }
 
 int	int_printf(va_list *p_arg, t_conf *p_conf)
@@ -69,10 +70,11 @@ int	int_printf(va_list *p_arg, t_conf *p_conf)
 	if (p_conf->flag & ZEROPAD)
 	{
 		p_conf->flag &= ~ZEROPAD;
-		if (!(p_conf->flag & LEFT) && (p_conf->flag & SPECIAL) \
-				&& (p_conf->prec == -1))
+		if ((p_conf->flag & SPECIAL) && (p_conf->prec == -1))
 			p_conf->prec = p_conf->width - 2;
-		else if (!(p_conf->flag & LEFT) && (p_conf->prec == -1))
+		else if (p_conf->prec == -1 && arg_val < 0)
+			p_conf->prec = p_conf->width - 1;
+		else if (p_conf->prec == -1)
 			p_conf->prec = p_conf->width;
 	}
 	p_conf->arg_len = ft_intlen(arg_val, base, p_conf);

@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 13:34:02 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/11 16:02:41 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/08/11 17:31:53 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	intersection(va_list *p_arg, t_conf *p_conf)
 {
 	if (p_conf->flag & LEFT)
 		p_conf->flag &= ~ZEROPAD;
-	else if (p_conf->spec == 'c')
+	if (p_conf->spec == 'c')
 		return (c_printf(p_arg, p_conf));
 	else if (p_conf->spec == 's')
 		return (s_printf(p_arg, p_conf));
