@@ -6,11 +6,22 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 16:03:12 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/13 17:29:54 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/08/26 16:15:27 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	del(void *content)
+{
+	free(content);
+}
+
+static int	error(int *err)
+{
+	*err = 1;
+	return (0);
+}
 
 static int	ft_isspace(char chr)
 {
@@ -26,12 +37,6 @@ static int	ft_isspace(char chr)
 		return (1);
 	if (chr == ' ')
 		return (1);
-	return (0);
-}
-
-static int	error(int *err)
-{
-	*err = 1;
 	return (0);
 }
 
@@ -64,7 +69,26 @@ int	errcheck_atoi(const char *str, int *err)
 	return (res * sign);
 }
 
-void	del(void *content)
+void	dup_check(t_deque *deq, int *err)
 {
-	free(content);
+	t_node	*a_node;
+	t_node	*b_node;
+	int		val;
+
+	a_node = deq->head;
+	while (a_node->next)
+	{
+		val = *(int *)a_node->content;
+		b_node = a_node->next;
+		while (b_node)
+		{
+			if (val == *(int *)b_node->content)
+				{
+					*err = 1;
+					return ;
+				}
+			b_node = b_node->next;
+		}
+		a_node = a_node->next;
+	}
 }

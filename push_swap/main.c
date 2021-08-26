@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 15:37:56 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/13 17:47:19 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/08/26 16:15:25 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ void	print_deq(t_deque *deq)
 		ft_putstr_fd("\n", 1);
 		del(content);
 	}
+}
+
+int	err_deal(t_deque *deq)
+{
+	ft_putstr_fd("Error\n", 1);
+	ft_deqclear(&deq, del);
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -42,18 +49,17 @@ int	main(int argc, char **argv)
 		content = (int *)malloc(sizeof(int));
 		*content = errcheck_atoi(argv[idx], &err);
 		if (err)
-		{
-			ft_putstr_fd("Error\n", 1);
-			ft_deqclear(&a_deq, del);
-			return (1);
-		}
+			return (err_deal(a_deq));
 		ft_deqadd_front(a_deq, content);
 		idx++;
 	}
-	revrotate(a_deq, b_deq, 'a');
-	ft_putstr_fd("a\n", 1);
-	print_deq(a_deq);
-	ft_putstr_fd("b\n", 1);
-	print_deq(b_deq);
+	dup_check(a_deq, &err);
+	if (err)
+		return (err_deal(a_deq));
+	// revrotate(a_deq, b_deq, 'a');
+	// ft_putstr_fd("a\n", 1);
+	// print_deq(a_deq);
+	// ft_putstr_fd("b\n", 1);
+	// print_deq(b_deq);
 	return (1);
 }

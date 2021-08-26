@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 15:32:49 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/13 17:42:44 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/08/26 16:07:11 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 
 int		errcheck_atoi(const char *str, int *err);
+void	dup_check(t_deque *deq, int *err);
 void	del(void *content);
 void	swap(t_deque *a_deq, t_deque *b_deq, char mod);
 void	push(t_deque *a_deq, t_deque *b_deq, char mod);
