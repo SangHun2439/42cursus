@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:19:56 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/03 19:38:38 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/04 14:15:46 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,18 @@ int	ok(void)
 
 int	sort_check(t_deque *a_deq, t_deque *b_deq)
 {
-	int		val;
+	int		*val;
 	t_node	*head;
 
 	if (!ft_deq_isempty(b_deq))
 		return (ko());
-	while (ft_deq_isempty(a_deq))
+	while (!ft_deq_isempty(a_deq))
 	{
-		val = *(int *)ft_deqpop_front(a_deq);
+		val = (int *)ft_deqpop_front(a_deq);
 		head = a_deq->head;
 		while (head)
 		{
-			if (val > *(int *)head->content)
+			if (*val > *(int *)head->content)
 				return (ko());
 			head = head->next;
 		}
@@ -90,6 +90,7 @@ void	do_sort(t_deque *a_deq, t_deque *b_deq, int *err)
 			*err = 1;
 			return ;
 		}
+		errcheck = get_next_line(0, &str);
 	}
 	if (errcheck < 0)
 		*err = 1;

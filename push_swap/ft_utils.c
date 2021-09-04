@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 16:03:12 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/26 16:15:27 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/04 15:30:21 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ void	dup_check(t_deque *deq, int *err)
 		while (b_node)
 		{
 			if (val == *(int *)b_node->content)
-				{
-					*err = 1;
-					return ;
-				}
+			{
+				*err = 1;
+				return ;
+			}
 			b_node = b_node->next;
 		}
 		a_node = a_node->next;

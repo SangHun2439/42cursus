@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 15:32:49 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/03 19:36:16 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/04 14:23:42 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void	rotate(t_deque *a_deq, t_deque *b_deq, char mod, char silent);
 void	revrotate(t_deque *a_deq, t_deque *b_deq, char mod, char silent);
 void	insert_sort(t_deque *a_deq, t_deque *b_deq, int r, char mod);
 void	quick_sort(t_deque *a_deq, t_deque *b_deq, int up, int down);
+void	input(int argc, char **argv, t_deque *a_deq, int *p_err);
 
 #endif

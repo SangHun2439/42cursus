@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 15:37:56 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/03 19:07:24 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/04 15:31:52 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,36 +33,24 @@ int	err_deal(t_deque *a_deq, t_deque *b_deq)
 	return (1);
 }
 
-static void	init(t_deque **p_adeq, t_deque **p_bdeq, int *p_idx, int *p_err)
-{
-	*p_adeq = ft_deqinit();
-	*p_bdeq = ft_deqinit();
-	*p_idx = 1;
-	*p_err = 0;
-}
-
 int	main(int argc, char **argv)
 {
 	t_deque	*a_deq;
-	t_deque *b_deq;
-	int		idx;
-	int		*content;
+	t_deque	*b_deq;
 	int		err;
 
-	init(&a_deq, &b_deq, &idx, &err);
-	while (idx < argc)
-	{
-		content = (int *)malloc(sizeof(int));
-		*content = errcheck_atoi(argv[idx], &err);
-		if (err)
-			return (err_deal(a_deq, b_deq));
-		ft_deqadd_back(a_deq, content);
-		idx++;
-	}
+	if (argc == 1)
+		return (1);
+	a_deq = ft_deqinit();
+	b_deq = ft_deqinit();
+	err = 0;
+	input(argc, argv, a_deq, &err);
+	if (err)
+		return (err_deal(a_deq, b_deq));
 	dup_check(a_deq, &err);
 	if (err)
 		return (err_deal(a_deq, b_deq));
-	quick_sort(a_deq, b_deq, 0, argc - 2);
-	print_deq(a_deq);
+	quick_sort(a_deq, b_deq, 0, ft_deq_count(a_deq) - 1);
+	// print_deq(a_deq);
 	return (1);
 }
