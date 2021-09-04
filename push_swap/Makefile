@@ -1,9 +1,10 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 AR = ar rcs
 RM = rm -f
 INC = -I. -I./libft
 NAME = push_swap
+BONUS_NAME = checker
 LIB = ft
 LIB_DIR = ./libft
 
@@ -11,21 +12,25 @@ SRCS = main.c ft_deq_isempty.c ft_deq_newnode.c ft_deqadd_back.c \
 		ft_deqadd_front.c ft_deqclear.c ft_deqget_back.c \
 		ft_deqget_front.c ft_deqinit.c ft_deqpop_back.c \
 		ft_deqpop_front.c ft_utils.c ft_swap.c \
-		ft_push.c ft_rotate.c ft_revrotate.c
-BONUS_SRCS =
+		ft_push.c ft_rotate.c ft_revrotate.c \
+		ft_deqget_idx.c insert_sort.c quick_sort.c
+BONUS_SRCS = ft_deq_isempty.c ft_deq_newnode.c ft_deqadd_back.c \
+		ft_deqadd_front.c ft_deqclear.c ft_deqget_back.c \
+		ft_deqget_front.c ft_deqinit.c ft_deqpop_back.c \
+		ft_deqpop_front.c ft_utils.c ft_swap.c \
+		ft_push.c ft_rotate.c ft_revrotate.c \
+		ft_deqget_idx.c \
+		main_bonus.c get_next_line_bonus.c checker_bonus.c
 OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
-ifdef WITH_BONUS
-	OBJ_FILES = $(BONUS_OBJS)
-else
-	OBJ_FILES = $(OBJS)
-endif
-
 all: $(NAME)
 
-$(NAME): $(LIB) $(OBJ_FILES)
-	$(CC) $(CFLAGS) $(OBJ_FILES) -o $@ $(INC) -L$(LIB_DIR) -l$(LIB)
+$(NAME): $(LIB) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $@ $(INC) -L$(LIB_DIR) -l$(LIB)
+
+$(BONUS_NAME): $(LIB) $(BONUS_OBJS)
+	$(CC) $(CFLAGS) $(BONUS_OBJS) -o $@ $(INC) -L$(LIB_DIR) -l$(LIB)
 
 $(LIB):
 	@$(MAKE) -C $(LIB_DIR) all
@@ -33,11 +38,10 @@ $(LIB):
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
-bonus:
-	make WITH_BONUS=1 all
+bonus: $(NAME) $(BONUS_NAME)
 
 clean:
-	$(RM) $(OBJ_FILES)
+	$(RM) $(OBJS)
 	$(RM) $(BONUS_OBJS)
 	@$(MAKE) -C $(LIB_DIR) clean
 

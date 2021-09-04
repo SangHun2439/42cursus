@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/13 15:37:56 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/03 19:07:24 by sangjeon         ###   ########.fr       */
+/*   Created: 2021/09/03 17:16:44 by sangjeon          #+#    #+#             */
+/*   Updated: 2021/09/03 19:07:45 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 void	print_deq(t_deque *deq)
 {
@@ -49,6 +49,8 @@ int	main(int argc, char **argv)
 	int		*content;
 	int		err;
 
+	if (argc == 2)
+		return (1);
 	init(&a_deq, &b_deq, &idx, &err);
 	while (idx < argc)
 	{
@@ -62,7 +64,8 @@ int	main(int argc, char **argv)
 	dup_check(a_deq, &err);
 	if (err)
 		return (err_deal(a_deq, b_deq));
-	quick_sort(a_deq, b_deq, 0, argc - 2);
-	print_deq(a_deq);
-	return (1);
+	do_sort(a_deq, b_deq, &err);
+	if (err)
+		return (err_deal(a_deq, b_deq));
+	return (sort_check(a_deq, b_deq));
 }

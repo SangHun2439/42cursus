@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 17:06:12 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/13 17:23:31 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/03 19:34:47 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,24 @@ void	do_push(t_deque *from, t_deque *to)
 	ft_deqadd_front(to, ft_deqpop_front(from));
 }
 
-void	pa(t_deque *a_deq, t_deque *b_deq)
+void	pa(t_deque *a_deq, t_deque *b_deq, char silent)
 {
 	do_push(b_deq, a_deq);
-	ft_putstr_fd("pa\n", 1);
+	if (!silent)
+		ft_putstr_fd("pa\n", 1);
 }
 
-void	pb(t_deque *a_deq, t_deque *b_deq)
+void	pb(t_deque *a_deq, t_deque *b_deq, char silent)
 {
 	do_push(a_deq, b_deq);
-	ft_putstr_fd("pb\n", 1);
+	if (!silent)
+		ft_putstr_fd("pb\n", 1);
 }
 
-void	push(t_deque *a_deq, t_deque *b_deq, char mod)
+void	push(t_deque *a_deq, t_deque *b_deq, char mod, char silent)
 {
 	if (mod == 'a')
-		pa(a_deq, b_deq);
+		pa(a_deq, b_deq, silent);
 	else if (mod == 'b')
-		pb(a_deq, b_deq);
+		pb(a_deq, b_deq, silent);
 }

@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 16:39:36 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/13 17:46:26 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/03 19:35:39 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,34 @@ void	do_swap(t_deque *deq)
 	ft_deqadd_front(deq, b);
 }
 
-void	sa(t_deque *a_deq)
+void	sa(t_deque *a_deq, char silent)
 {
 	do_swap(a_deq);
-	ft_putstr_fd("sa\n", 1);
+	if (!silent)
+		ft_putstr_fd("sa\n", 1);
 }
 
-void	sb(t_deque *b_deq)
+void	sb(t_deque *b_deq, char silent)
 {
 	do_swap(b_deq);
-	ft_putstr_fd("sb\n", 1);
+	if (!silent)
+		ft_putstr_fd("sb\n", 1);
 }
 
-void	ss(t_deque *a_deq, t_deque *b_deq)
+void	ss(t_deque *a_deq, t_deque *b_deq, char silent)
 {
 	do_swap(a_deq);
 	do_swap(b_deq);
-	ft_putstr_fd("ss\n", 1);
+	if (!silent)
+		ft_putstr_fd("ss\n", 1);
 }
 
-void	swap(t_deque *a_deq, t_deque *b_deq, char mod)
+void	swap(t_deque *a_deq, t_deque *b_deq, char mod, char silent)
 {
 	if (mod == 'a')
-		sa(a_deq);
+		sa(a_deq, silent);
 	else if (mod == 'b')
-		sa(b_deq);
+		sa(b_deq, silent);
 	else if (mod == 's')
-		ss(a_deq, b_deq);
+		ss(a_deq, b_deq, silent);
 }

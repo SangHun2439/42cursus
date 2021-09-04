@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 17:40:52 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/13 17:44:44 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/03 19:34:44 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,34 @@ void	do_revrotate(t_deque *deq)
 	ft_deqadd_front(deq, ft_deqpop_back(deq));
 }
 
-void	rra(t_deque *a_deq)
+void	rra(t_deque *a_deq, char silent)
 {
 	do_revrotate(a_deq);
-	ft_putstr_fd("rra\n", 1);
+	if (!silent)
+		ft_putstr_fd("rra\n", 1);
 }
 
-void	rrb(t_deque *b_deq)
+void	rrb(t_deque *b_deq, char silent)
 {
 	do_revrotate(b_deq);
-	ft_putstr_fd("rrb\n", 1);
+	if (!silent)
+		ft_putstr_fd("rrb\n", 1);
 }
 
-void	rrr(t_deque *a_deq, t_deque *b_deq)
+void	rrr(t_deque *a_deq, t_deque *b_deq, char silent)
 {
 	do_revrotate(a_deq);
 	do_revrotate(b_deq);
-	ft_putstr_fd("rrr\n", 1);
+	if (!silent)
+		ft_putstr_fd("rrr\n", 1);
 }
 
-void	revrotate(t_deque *a_deq, t_deque *b_deq, char mod)
+void	revrotate(t_deque *a_deq, t_deque *b_deq, char mod, char silent)
 {
 	if (mod == 'a')
-		rra(a_deq);
+		rra(a_deq, silent);
 	else if (mod == 'b')
-		rrb(b_deq);
+		rrb(b_deq, silent);
 	else if (mod == 's')
-		rrr(a_deq, b_deq);
+		rrr(a_deq, b_deq, silent);
 }
