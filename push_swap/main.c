@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 15:37:56 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/04 15:31:52 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/06 23:36:51 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ int	main(int argc, char **argv)
 	dup_check(a_deq, &err);
 	if (err)
 		return (err_deal(a_deq, b_deq));
-	quick_sort(a_deq, b_deq, 0, ft_deq_count(a_deq) - 1);
+	quick_sort(a_deq, b_deq);
 	// print_deq(a_deq);
+	// ft_deqclear(&a_deq, del);
+	// ft_deqclear(&b_deq, del);
 	return (1);
 }

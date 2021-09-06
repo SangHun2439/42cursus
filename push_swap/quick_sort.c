@@ -6,60 +6,86 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 16:04:45 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/03 19:37:36 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/06 23:02:01 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	partition(t_deque *a_deq, t_deque *b_deq, int up, int down)
+void	div_three(t_deque *deq, int size, int *one_third, int *two_third)
 {
-	int	res;
-	int	idx;
-	int	pivot;
-	int	rotate_count;
+	int		one;
+	int		two;
+	int		*arr;
+	int		idx;
 
+	one = size / 3;
+	two = one * 2;
 	idx = 0;
-	rotate_count = 0;
-	res = up;
-	while (idx < up)
+	arr = (int *)malloc(sizeof(int) * size);
+	while (idx < size)
 	{
-		rotate(a_deq, b_deq, 'a', 0);
+		arr[idx] = *(int *)ft_deqget_idx(deq, idx);
 		idx++;
 	}
-	pivot = *(int *)ft_deqget_front(a_deq);
-	while (idx < down + 1)
-	{
-		if (pivot > *(int *)ft_deqget_front(a_deq))
-		{
-			push(a_deq, b_deq, 'b', 0);
-			res++;
-		}
-		else
-		{
-			rotate(a_deq, b_deq, 'a', 0);
-			rotate_count++;
-		}
-		idx++;
-	}
-	idx = res - up;
-	while (rotate_count--)
-		revrotate(a_deq, b_deq, 'a', 0);
-	while (idx--)
-		push(a_deq, b_deq, 'a', 0);
-	while (up--)
-		revrotate(a_deq, b_deq, 'a', 0);
-	return (res);
+	*one_third = quick_select(arr, 0, size - 1, one - 1);
+	*two_third = quick_select(arr, 0, size - 1, two - 1);
+	free(arr);
 }
 
-void	quick_sort(t_deque *a_deq, t_deque *b_deq, int up, int down)
+static void	init(t_cnt *p_cnt, int size, int piv_one, int piv_two)
 {
-	int	pivot;
+	p_cnt->pa = 0;
+	p_cnt->pb = 0;
+	p_cnt->ra = 0;
+	p_cnt->rb = 0;
+	p_cnt->size = size;
+	p_cnt->piv_one = piv_one;
+	p_cnt->piv_two = piv_two;
+}
 
-	if (up < down)
-	{
-		pivot = partition(a_deq, b_deq, up, down);
-		quick_sort(a_deq, b_deq, up, pivot - 1);
-		quick_sort(a_deq, b_deq, pivot + 1, down);
-	}
+void	partition_a(t_deque *a_deq, t_deque *b_deq, int size)
+{
+	int		piv_one;
+	int		piv_two;
+	t_cnt	cnt;
+
+	if (size < 3)
+		return hard_sort_a(a_deq, b_deq, size);
+	div_three(a_deq, size, &piv_one, &piv_two);
+	init(&cnt, size, piv_one, piv_two);
+	while (size--)
+		a_push_rotate(a_deq, b_deq, &cnt);
+	many_rev(a_deq, b_deq, cnt.ra, 'a');
+	many_rev(a_deq, b_deq, cnt.rb, 'b');
+	partition_a(a_deq, b_deq, cnt.ra);
+	partition_b(a_deq, b_deq, cnt.rb);
+	partition_b(a_deq, b_deq, cnt.pb - cnt.rb);
+}
+
+void	partition_b(t_deque *a_deq, t_deque *b_deq, int size)
+{
+	int		piv_one;
+	int		piv_two;
+	t_cnt	cnt;
+
+	if (size < 3)
+		return hard_sort_b(a_deq, b_deq, size);
+	div_three(b_deq, size, &piv_one, &piv_two);
+	init(&cnt, size, piv_one, piv_two);
+	while (size--)
+		b_push_rotate(a_deq, b_deq, &cnt);
+	many_rev(a_deq, b_deq, cnt.rb, 'b');
+	partition_a(a_deq, b_deq, cnt.pa - cnt.ra);
+	many_rev(a_deq, b_deq, cnt.ra, 'a');
+	partition_a(a_deq, b_deq, cnt.ra);
+	partition_b(a_deq, b_deq, cnt.rb);
+}
+
+void	quick_sort(t_deque *a_deq, t_deque *b_deq)
+{
+	int	size;
+
+	size = ft_deq_count(a_deq);
+	partition_a(a_deq, b_deq, size);
 }

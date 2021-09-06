@@ -13,8 +13,9 @@ SRCS = main.c ft_deq_isempty.c ft_deq_newnode.c ft_deqadd_back.c \
 		ft_deqget_front.c ft_deqinit.c ft_deqpop_back.c \
 		ft_deqpop_front.c ft_utils.c ft_swap.c \
 		ft_push.c ft_rotate.c ft_revrotate.c \
-		ft_deqget_idx.c insert_sort.c quick_sort.c \
-		input.c ft_deq_count.c
+		ft_deqget_idx.c quick_sort.c \
+		input.c ft_deq_count.c quick_select.c \
+		quick_sort2.c
 BONUS_SRCS = ft_deq_isempty.c ft_deq_newnode.c ft_deqadd_back.c \
 		ft_deqadd_front.c ft_deqclear.c ft_deqget_back.c \
 		ft_deqget_front.c ft_deqinit.c ft_deqpop_back.c \
