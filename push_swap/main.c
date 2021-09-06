@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 15:37:56 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/06 23:36:51 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/07 00:41:54 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 void	print_deq(t_deque *deq)
 {
 	int	*content;
+	t_node	*node;
 
-	while (deq->head)
+	node = deq->head;
+	while (node)
 	{
-		content = ft_deqpop_front(deq);
+		content = (int *)node->content;
 		ft_putnbr_fd(*content, 1);
 		ft_putstr_fd("\n", 1);
-		del(content);
+		node = node->next;
 	}
 }
 
@@ -51,8 +53,7 @@ int	main(int argc, char **argv)
 	if (err)
 		return (err_deal(a_deq, b_deq));
 	quick_sort(a_deq, b_deq);
-	// print_deq(a_deq);
-	// ft_deqclear(&a_deq, del);
-	// ft_deqclear(&b_deq, del);
+	ft_deqclear(&a_deq, del);
+	ft_deqclear(&b_deq, del);
 	return (1);
 }

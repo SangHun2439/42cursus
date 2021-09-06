@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 16:04:45 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/06 23:02:01 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/07 00:35:44 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	div_three(t_deque *deq, int size, int *one_third, int *two_third)
 	two = one * 2;
 	idx = 0;
 	arr = (int *)malloc(sizeof(int) * size);
+	if (!arr)
+		exit(1);
 	while (idx < size)
 	{
 		arr[idx] = *(int *)ft_deqget_idx(deq, idx);

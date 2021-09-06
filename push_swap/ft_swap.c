@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 16:39:36 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/03 19:35:39 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/07 00:57:53 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	swap(t_deque *a_deq, t_deque *b_deq, char mod, char silent)
 	if (mod == 'a')
 		sa(a_deq, silent);
 	else if (mod == 'b')
-		sa(b_deq, silent);
+		sb(b_deq, silent);
 	else if (mod == 's')
 		ss(a_deq, b_deq, silent);
 }

@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 17:04:29 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/06 23:17:06 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/07 00:51:43 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,9 @@ void	hard_sort_a(t_deque *a_deq, t_deque *b_deq, int size)
 		return ;
 	if (size == 2)
 	{
-		if (*(int *)a_deq->head->content < *(int *)a_deq->head->next->content)
-			return ;
-		else
-		{
+		if (*(int *)a_deq->head->content > *(int *)a_deq->head->next->content)
 			swap(a_deq, b_deq, 'a', 0);
-			return ;
-		}
+		return ;
 	}
 }
 
