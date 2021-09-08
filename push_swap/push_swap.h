@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 15:32:49 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/06 23:01:37 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/08 12:46:34 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,15 @@ void	input(int argc, char **argv, t_deque *a_deq, int *p_err);
 void	hard_sort_a(t_deque *a_deq, t_deque *b_deq, int size);
 void	hard_sort_b(t_deque *a_deq, t_deque *b_deq, int size);
 int		quick_select(int *arr, int start, int end, int k);
+int		quick_select_deq(t_deque *deq, int start, int end, int k);
 void	b_push_rotate(t_deque *a_deq, t_deque *b_deq, t_cnt *p_cnt);
 void	a_push_rotate(t_deque *a_deq, t_deque *b_deq, t_cnt *p_cnt);
 void	many_rev(t_deque *a_deq, t_deque *b_deq, int num, char mod);
 void	quick_sort(t_deque *a_deq, t_deque *b_deq);
 void	partition_b(t_deque *a_deq, t_deque *b_deq, int size);
 void	partition_a(t_deque *a_deq, t_deque *b_deq, int size);
+void	three_sort(t_deque *a_deq);
+void	four_sort(t_deque *a_deq, t_deque *b_deq);
+void	five_sort(t_deque *a_deq, t_deque *b_deq);
 
 #endif

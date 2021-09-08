@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 16:04:45 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/07 00:35:44 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/08 12:46:00 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,11 @@ void	div_three(t_deque *deq, int size, int *one_third, int *two_third)
 {
 	int		one;
 	int		two;
-	int		*arr;
-	int		idx;
 
 	one = size / 3;
 	two = one * 2;
-	idx = 0;
-	arr = (int *)malloc(sizeof(int) * size);
-	if (!arr)
-		exit(1);
-	while (idx < size)
-	{
-		arr[idx] = *(int *)ft_deqget_idx(deq, idx);
-		idx++;
-	}
-	*one_third = quick_select(arr, 0, size - 1, one - 1);
-	*two_third = quick_select(arr, 0, size - 1, two - 1);
-	free(arr);
+	*one_third = quick_select_deq(deq, 0, size - 1, one - 1);
+	*two_third = quick_select_deq(deq, 0, size - 1, two - 1);
 }
 
 static void	init(t_cnt *p_cnt, int size, int piv_one, int piv_two)
@@ -89,5 +77,11 @@ void	quick_sort(t_deque *a_deq, t_deque *b_deq)
 	int	size;
 
 	size = ft_deq_count(a_deq);
+	if (size == 3)
+		return (three_sort(a_deq));
+	if (size ==4)
+		return (four_sort(a_deq, b_deq));
+	if (size == 5)
+		return (five_sort(a_deq, b_deq));
 	partition_a(a_deq, b_deq, size);
 }

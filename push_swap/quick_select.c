@@ -6,11 +6,13 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 13:54:11 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/06 16:28:25 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/08 12:18:22 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static void	swap(int *arr, int a, int b)
+#include "push_swap.h"
+
+static void	quick_select_swap(int *arr, int a, int b)
 {
 	int	tmp;
 
@@ -35,11 +37,11 @@ static int	partition(int *arr, int start, int end)
 		while (right > start && pivot < arr[right])
 			right--;
 		if (left < right)
-			swap(arr, left, right);
+			quick_select_swap(arr, left, right);
 		else
 			break;
 	}
-	swap(arr, right, start);
+	quick_select_swap(arr, right, start);
 	return (right);
 }
 
@@ -54,4 +56,26 @@ int	quick_select(int *arr, int start, int end, int k)
 		return (quick_select(arr, start, pivot - 1, k));
 	else
 		return (quick_select(arr, pivot + 1, end, k));
+}
+
+int	quick_select_deq(t_deque *deq, int start, int end, int k)
+{
+	int	*arr;
+	int	idx;
+	int	size;
+	int	res;
+
+	idx = 0;
+	size = end - start + 1;
+	arr = (int *)malloc(sizeof(int) * size);
+	if (!arr)
+		exit(1);
+	while (idx < size)
+	{
+		arr[idx] = *(int *)ft_deqget_idx(deq, idx);
+		idx++;
+	}
+	res = quick_select(arr, start, end, k);
+	free(arr);
+	return (res);
 }
