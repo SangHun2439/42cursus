@@ -6,12 +6,11 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 17:04:29 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/07 00:51:43 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/08 13:37:03 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 void	hard_sort_a(t_deque *a_deq, t_deque *b_deq, int size)
 {
@@ -36,7 +35,7 @@ void	hard_sort_b(t_deque *a_deq, t_deque *b_deq, int size)
 	{
 		if (*(int *)b_deq->head->content < *(int *)b_deq->head->next->content)
 			swap(a_deq, b_deq, 'b', 0);
-		while(size--)
+		while (size--)
 			push(a_deq, b_deq, 'a', 0);
 		return ;
 	}

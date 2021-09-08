@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 13:54:11 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/08 12:18:22 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/08 13:36:34 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	partition(int *arr, int start, int end)
 		if (left < right)
 			quick_select_swap(arr, left, right);
 		else
-			break;
+			break ;
 	}
 	quick_select_swap(arr, right, start);
 	return (right);
@@ -51,7 +51,7 @@ int	quick_select(int *arr, int start, int end, int k)
 
 	pivot = partition(arr, start, end);
 	if (k == pivot)
-		return arr[pivot];
+		return (arr[pivot]);
 	else if (k < pivot)
 		return (quick_select(arr, start, pivot - 1, k));
 	else

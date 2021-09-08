@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 15:37:56 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/07 00:41:54 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/08 13:34:22 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_deq(t_deque *deq)
 {
-	int	*content;
+	int		*content;
 	t_node	*node;
 
 	node = deq->head;

@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 16:04:45 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/08 12:46:00 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/08 13:35:30 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	partition_a(t_deque *a_deq, t_deque *b_deq, int size)
 	t_cnt	cnt;
 
 	if (size < 3)
-		return hard_sort_a(a_deq, b_deq, size);
+		return (hard_sort_a(a_deq, b_deq, size));
 	div_three(a_deq, size, &piv_one, &piv_two);
 	init(&cnt, size, piv_one, piv_two);
 	while (size--)
@@ -60,7 +60,7 @@ void	partition_b(t_deque *a_deq, t_deque *b_deq, int size)
 	t_cnt	cnt;
 
 	if (size < 3)
-		return hard_sort_b(a_deq, b_deq, size);
+		return (hard_sort_b(a_deq, b_deq, size));
 	div_three(b_deq, size, &piv_one, &piv_two);
 	init(&cnt, size, piv_one, piv_two);
 	while (size--)
@@ -79,7 +79,7 @@ void	quick_sort(t_deque *a_deq, t_deque *b_deq)
 	size = ft_deq_count(a_deq);
 	if (size == 3)
 		return (three_sort(a_deq));
-	if (size ==4)
+	if (size == 4)
 		return (four_sort(a_deq, b_deq));
 	if (size == 5)
 		return (five_sort(a_deq, b_deq));

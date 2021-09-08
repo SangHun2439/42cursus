@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 11:33:53 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/08 12:48:54 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/08 13:36:03 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	five_sort(t_deque *a_deq, t_deque *b_deq)
 	}
 	three_sort(a_deq);
 	if (*(int *)b_deq->head->content < *(int *)b_deq->head->next->content)
-			swap(a_deq, b_deq, 'b', 0);
+		swap(a_deq, b_deq, 'b', 0);
 	push(a_deq, b_deq, 'a', 0);
 	push(a_deq, b_deq, 'a', 0);
 }
