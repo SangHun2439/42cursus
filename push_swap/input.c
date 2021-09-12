@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 14:14:54 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/04 15:25:27 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/12 17:05:59 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static void	split_free(char **strarr)
 	char	**tmp;
 
 	tmp = strarr;
-	while (*tmp++)
-		free(*tmp);
+	while (*tmp)
+		free(*tmp++);
 	free(strarr);
 }
 

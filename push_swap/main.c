@@ -6,26 +6,11 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 15:37:56 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/08 13:34:22 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/12 17:13:42 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	print_deq(t_deque *deq)
-{
-	int		*content;
-	t_node	*node;
-
-	node = deq->head;
-	while (node)
-	{
-		content = (int *)node->content;
-		ft_putnbr_fd(*content, 1);
-		ft_putstr_fd("\n", 1);
-		node = node->next;
-	}
-}
 
 int	err_deal(t_deque *a_deq, t_deque *b_deq)
 {
