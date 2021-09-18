@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:19:56 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/17 10:24:45 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/18 16:13:14 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ko(t_deque **p_a_deq, t_deque **p_b_deq)
 	ft_deqclear(p_a_deq, del);
 	ft_deqclear(p_b_deq, del);
 	ft_putstr_fd("KO\n", 1);
-	return (1);
+	return (0);
 }
 
 int	ok(t_deque **p_a_deq, t_deque **p_b_deq)
@@ -25,7 +25,7 @@ int	ok(t_deque **p_a_deq, t_deque **p_b_deq)
 	ft_deqclear(p_a_deq, del);
 	ft_deqclear(p_b_deq, del);
 	ft_putstr_fd("OK\n", 1);
-	return (1);
+	return (0);
 }
 
 int	sort_check(t_deque *a_deq, t_deque *b_deq)

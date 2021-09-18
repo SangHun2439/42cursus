@@ -6,16 +6,11 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 16:03:12 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/04 15:30:21 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/18 15:30:11 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	del(void *content)
-{
-	free(content);
-}
 
 static int	error(int *err)
 {
@@ -40,15 +35,21 @@ static int	ft_isspace(char chr)
 	return (0);
 }
 
+static	void	init_and_skip_space(int *p_sign, long long *p_res, \
+const char **p_str)
+{
+	*p_sign = 1;
+	*p_res = 0;
+	while (**p_str && ft_isspace(**p_str))
+		*p_str = *p_str + 1;
+}
+
 int	errcheck_atoi(const char *str, int *err)
 {
 	int			sign;
 	long long	res;
 
-	sign = 1;
-	res = 0;
-	while (*str && ft_isspace(*str))
-		str++;
+	init_and_skip_space(&sign, &res, &str);
 	if (*str == '-')
 	{
 		sign = sign * -1;
@@ -56,6 +57,8 @@ int	errcheck_atoi(const char *str, int *err)
 	}
 	else if (*str == '+')
 		str++;
+	if (!*str)
+		return (error(err));
 	while (*str && *str >= '0' && *str <= '9')
 	{
 		res *= 10;

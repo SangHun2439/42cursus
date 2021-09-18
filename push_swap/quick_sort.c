@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 16:04:45 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/08 13:35:30 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/18 15:49:41 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	quick_sort(t_deque *a_deq, t_deque *b_deq)
 	int	size;
 
 	size = ft_deq_count(a_deq);
+	if (is_sorted(a_deq, size))
+		return ;
 	if (size == 3)
 		return (three_sort(a_deq));
 	if (size == 4)

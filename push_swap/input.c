@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 14:14:54 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/17 09:54:48 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/18 16:25:10 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,15 @@ void	input(int argc, char **argv, t_deque *a_deq, int *p_err)
 	while (idx < argc)
 	{
 		strarr = ft_split(argv[idx], ' ');
-		if (!strarr || !*strarr)
+		if (!strarr)
 		{
 			*p_err = 1;
+			return ;
+		}
+		if (!*strarr)
+		{
+			*p_err = 1;
+			split_free(strarr);
 			return ;
 		}
 		arr_input(strarr, a_deq, p_err);

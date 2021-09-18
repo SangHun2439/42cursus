@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 15:37:56 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/09/17 10:17:26 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/09/18 16:25:16 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	int		err;
 
 	if (argc == 1)
-		return (1);
+		return (0);
 	a_deq = ft_deqinit();
 	b_deq = ft_deqinit();
 	err = 0;
@@ -40,5 +40,5 @@ int	main(int argc, char **argv)
 	quick_sort(a_deq, b_deq);
 	ft_deqclear(&a_deq, del);
 	ft_deqclear(&b_deq, del);
-	return (1);
+	return (0);
 }
