@@ -1,1 +1,1 @@
-7c7ca53ff19c6d4fe9b71289910914d6f51846d8  disk-0.qcow2
+7c7ca53ff19c6d4fe9b71289910914d6f51846d8  Virtual Machine 2.utm/Images/disk-0.qcow2
