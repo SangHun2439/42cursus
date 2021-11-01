@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 10:35:37 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/10/29 21:58:30 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/01 16:31:38 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ void	init(t_game **game)
 	(*game)->mlx = malloc(sizeof(t_map));
 	(*game)->imgset = malloc(sizeof(t_imgset));
 	(*game)->map = malloc(sizeof(t_map));
+	(*game)->heading = RIGHT;
+	(*game)->imgset->size = 60;
+	(*game)->map->col_cnt = 0;
+	(*game)->moving = 0;
+	(*game)->clear = 0;
+	(*game)->to_x = 0;
+	(*game)->to_y = 0;
+	(*game)->mv_cnt = 0;
 }
 
 int	main(int argc, char **argv)

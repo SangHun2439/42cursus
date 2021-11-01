@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 21:54:05 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/10/29 23:01:19 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/01 22:56:11 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ char	*read_file(int fd)
 	char	*for_free;
 	ssize_t	read_size;
 
+	res = ft_strdup("\0");
 	read_size = read(fd, buf, BUFFER_SIZE);
 	buf[read_size] = 0;
-	res = ft_strdup(buf);
 	while (read_size > 0)
 	{
-		read_size = read(fd, buf, BUFFER_SIZE);
-		buf[read_size] = 0;
 		for_free = res;
 		res = ft_strjoin(res, buf);
 		free(for_free);
+		read_size = read(fd, buf, BUFFER_SIZE);
+		buf[read_size] = 0;
 	}
 	if (read_size < 0)
 	{
@@ -113,7 +113,7 @@ int	map_parse(char *path, t_map *map_info)
 		return (0);
 	}
 	get_w_h(map_info);
-	map_info->right = 1;
+	free(contents);
 	if (!map_check(map_info))
 	{
 		split_free(map_info->map);

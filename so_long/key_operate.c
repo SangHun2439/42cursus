@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:27:44 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/10/29 22:39:48 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/01 16:00:37 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@ void	quit(t_mlx *mlx)
 {
 	mlx_destroy_window(mlx->mlx_ptr, mlx->win);
 	exit(0);
+}
+
+int	check_tile(t_game *game, int x, int y)
+{
+	if (game->map->map[y][x] == '1')
+		return (WALL);
+	if (game->map->map[y][x] == 'C')
+		return (FOOD);
+	if (game->map->map[y][x] == 'E')
+		return (DOOR);
+	return (ROAD);
 }
 
 int	key_press(int key_code, t_game *game)
@@ -41,23 +52,25 @@ int	button_close(t_game *game)
 
 int	std_action(t_game *game)
 {
-	static int	cnt;
-	int			size;
-
-	size = IMG_SIZE;
-	cnt++;
-	if (cnt == 18000)
-		cnt = 0;
-	if (!(cnt % 2000))
+	if (game->moving)
 	{
-		mlx_put_image_to_window(game->mlx->mlx_ptr, game->mlx->win, \
-		game->imgset->road, (game->map->p_x) * size, (game->map->p_y) * size);
-		if (game->map->right)
-			mlx_put_image_to_window(game->mlx->mlx_ptr, game->mlx->win, \
-			game->imgset->rst_turtle[cnt / 2000], (game->map->p_x) * size, (game->map->p_y) * size);
+		if (check_tile(game, game->to_x, game->to_y) == WALL)
+			game->moving = 0;
+		else if (check_tile(game, game->to_x, game->to_y) == ROAD)
+			mv_ani(game, 500);
+		else if (check_tile(game, game->to_x, game->to_y) == FOOD)
+		{
+			mv_ani(game, 500);
+			eat_ani(game);
+		}
+		else if (game->map->col_cnt == 0)
+			clear_ani(game, 500);
 		else
-			mlx_put_image_to_window(game->mlx->mlx_ptr, game->mlx->win, \
-			game->imgset->lst_turtle[cnt / 2000], (game->map->p_x) * size, (game->map->p_y) * size);
+			game->moving = 0;
 	}
+	else if (game->clear)
+		return (0);
+	else
+		st_ani(game, 1500);
 	return (0);
 }

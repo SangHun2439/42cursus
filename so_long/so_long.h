@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 10:36:41 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/10/29 22:40:23 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/01 17:01:33 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,13 @@
 
 # define BUFFER_SIZE 64
 
-# define IMG_SIZE 60
+# define WALL 0
+# define ROAD 1
+# define FOOD 2
+# define DOOR 3
+
+# define RIGHT 0
+# define LEFT 1
 
 # define CLOSED 1
 # define EXIT 2
@@ -43,13 +49,16 @@ typedef	struct s_map
 	char	**map;
 	int		width;
 	int		height;
-	char	right;
 	int		p_x;
 	int		p_y;
+	int		e_x;
+	int		e_y;
+	int		col_cnt;
 }	t_map;
 
 typedef	struct s_imgset
 {
+	int		size;
 	void	*wall;
 	void	*road;
 	void	*c_exit;
@@ -72,6 +81,12 @@ typedef	struct s_game
 	t_mlx		*mlx;
 	t_imgset	*imgset;
 	t_map		*map;
+	char	heading;
+	char	clear;
+	char	moving;
+	int		to_x;
+	int		to_y;
+	int		mv_cnt;
 }	t_game;
 
 
@@ -89,5 +104,10 @@ void	img_init_rst(t_mlx *mlx, t_imgset *p_imgset);
 void	img_init_lst(t_mlx *mlx, t_imgset *p_imgset);
 void	img_init_rmv(t_mlx *mlx, t_imgset *p_imgset);
 void	img_init_lmv(t_mlx *mlx, t_imgset *p_imgset);
+void	st_ani(t_game *game, int frame_per_act);
+void	mv_ani(t_game *game, int frame_per_act);
+void	eat_ani(t_game *game);
+void	clear_ani(t_game *game, int frame_per_act);
+char	*simple_itoa(int a);
 
 #endif
