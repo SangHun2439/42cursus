@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 10:35:37 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/11/03 11:50:37 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/03 13:02:49 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	err(void)
 {
-	ft_putstr_fd("map Error\n", 2);
+	ft_putstr_fd("Error\nmap is invalid\n", 2);
 	return (0);
 }
 
