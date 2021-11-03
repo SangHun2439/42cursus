@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 10:35:37 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/11/01 16:31:38 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/03 11:50:37 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	err(void)
 {
@@ -43,9 +43,10 @@ int	main(int argc, char **argv)
 	init(&game);
 	if (!map_parse(argv[1], game->map))
 		return (err());
-	map_render(game->map, game->mlx, game->imgset);
+	map_init(game);
 	mlx_hook(game->mlx->win, X_EVENT_KEY_PRESS, 0, key_press, game);
 	mlx_hook(game->mlx->win, X_EVENT_RED_BUTTON_PRESS, 0, button_close, game);
 	mlx_loop_hook(game->mlx->mlx_ptr, std_action, game);
 	mlx_loop(game->mlx->mlx_ptr);
+	return (0);
 }

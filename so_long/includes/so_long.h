@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/15 10:36:41 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/11/01 17:01:33 by sangjeon         ###   ########.fr       */
+/*   Created: 2021/11/03 11:51:25 by sangjeon          #+#    #+#             */
+/*   Updated: 2021/11/03 12:19:19 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define KEY_D 2
 # define KEY_ESC 53
 
-typedef	struct s_map
+typedef struct s_map
 {
 	char	**map;
 	int		width;
@@ -56,7 +56,7 @@ typedef	struct s_map
 	int		col_cnt;
 }	t_map;
 
-typedef	struct s_imgset
+typedef struct s_imgset
 {
 	int		size;
 	void	*wall;
@@ -70,29 +70,28 @@ typedef	struct s_imgset
 	void	*shrimp;
 }	t_imgset;
 
-typedef	struct s_mlx
+typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*win;
 }	t_mlx;
 
-typedef	struct s_game
+typedef struct s_game
 {
 	t_mlx		*mlx;
 	t_imgset	*imgset;
 	t_map		*map;
-	char	heading;
-	char	clear;
-	char	moving;
-	int		to_x;
-	int		to_y;
-	int		mv_cnt;
+	char		heading;
+	char		clear;
+	char		moving;
+	int			to_x;
+	int			to_y;
+	int			mv_cnt;
 }	t_game;
-
 
 int		map_parse(char *path, t_map *map_info);
 void	split_free(char **split);
-void	map_render(t_map *map_info, t_mlx *mlx, t_imgset *imgset);
+void	map_init(t_game *game);
 int		key_press(int key_code, t_game *game);
 int		button_close(t_game *game);
 void	w_action(t_game *game);
@@ -108,6 +107,12 @@ void	st_ani(t_game *game, int frame_per_act);
 void	mv_ani(t_game *game, int frame_per_act);
 void	eat_ani(t_game *game);
 void	clear_ani(t_game *game, int frame_per_act);
+void	display_count(t_game *game);
 char	*simple_itoa(int a);
+void	put_img(t_game *game, void *img, int x, int y);
+void	shrimp_put_cnt(t_game *game, void *img, int x, int y);
+void	player_put_get_location(t_game *game, void *img, int x, int y);
+void	mv_end(t_game *game);
+void	game_clear(t_game *game);
 
 #endif

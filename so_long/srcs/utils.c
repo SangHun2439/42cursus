@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 09:10:46 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/11/01 17:05:31 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/03 10:38:35 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	split_free(char **split)
 	free(split);
 }
 
-int		count_digit(int a)
+int	count_digit(int a)
 {
 	int	res;
 
@@ -54,4 +54,10 @@ char	*simple_itoa(int a)
 		a = a / 10;
 	}
 	return (res);
+}
+
+void	put_img(t_game *game, void *img, int x, int y)
+{
+	mlx_put_image_to_window(game->mlx->mlx_ptr, game->mlx->win, \
+	img, x * (game->imgset->size), y * (game->imgset->size));
 }
