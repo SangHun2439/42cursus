@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 21:54:05 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/11/03 11:50:42 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/03 17:36:30 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ int	map_check(t_map *map_info)
 		while (map_info->map[y][x])
 		{
 			each_check(x, y, &check, map_info);
+			if (map_info->map[y][x] != '1' && map_info->map[y][x] != 'C' \
+			&& map_info->map[y][x] != 'E' && map_info->map[y][x] != '0' \
+			&& map_info->map[y][x] != 'P')
+				return (0);
 			x++;
 		}
 		if (x != map_info->width)
