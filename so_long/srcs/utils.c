@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 09:10:46 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/11/03 10:38:35 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/03 12:32:25 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,17 @@ void	put_img(t_game *game, void *img, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx->mlx_ptr, game->mlx->win, \
 	img, x * (game->imgset->size), y * (game->imgset->size));
+}
+
+void	print_mv(t_game *game)
+{
+	char	*cnt;
+	char	*res;
+
+	cnt = simple_itoa(game->mv_cnt);
+	res = ft_strjoin("Movement Count : ", cnt);
+	free(cnt);
+	ft_putstr_fd(res, 1);
+	free(res);
+	ft_putstr_fd("\n", 1);
 }

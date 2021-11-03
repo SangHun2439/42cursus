@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 10:36:41 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/11/03 12:19:21 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/03 12:32:55 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,6 @@ void	shrimp_put_cnt(t_game *game, void *img, int x, int y);
 void	player_put_get_location(t_game *game, void *img, int x, int y);
 void	mv_end(t_game *game);
 void	game_clear(t_game *game);
+void	print_mv(t_game *game);
 
 #endif

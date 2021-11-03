@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:27:44 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/11/01 16:00:37 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/03 12:49:17 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	button_close(t_game *game)
 
 int	std_action(t_game *game)
 {
+	if (game->clear)
+		return (0);
 	if (game->moving)
 	{
 		if (check_tile(game, game->to_x, game->to_y) == WALL)
@@ -68,8 +70,6 @@ int	std_action(t_game *game)
 		else
 			game->moving = 0;
 	}
-	else if (game->clear)
-		return (0);
 	else
 		st_ani(game, 1500);
 	return (0);

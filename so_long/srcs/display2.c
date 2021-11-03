@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 09:47:14 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/11/03 11:05:37 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/03 12:46:13 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	mv_end(t_game *game)
 	game->map->p_y = game->to_y;
 	game->moving = 0;
 	game->mv_cnt++;
+	print_mv(game);
 	display_count(game);
 }
 
@@ -77,5 +78,5 @@ void	game_clear(t_game *game)
 	game->map->width / 2 * 60 - 40, game->map->height / 2 * 60 + 30, 0xFFFFFF, \
 	"PRESS ESC TO END");
 	game->clear = 1;
-	game->moving = 0;
+	mv_end(game);
 }
