@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 16:38:52 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/11/16 22:46:57 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/24 08:48:25 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ long long	get_curtime(void)
 {
 	struct timeval	time;
 
-	gettimeofday(&(time), 0);
+	if (gettimeofday(&(time), 0))
+		return (-1);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 

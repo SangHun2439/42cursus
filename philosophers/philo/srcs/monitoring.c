@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 23:12:49 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/11/17 09:05:29 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/24 08:45:41 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	monitoring(t_philo **philos, t_public *public)
 {
 	while (1)
 	{
-		if (is_dead(philos, public) || is_all_eat(philos, public))
+		if (is_dead(philos, public) || is_all_eat(philos, public) || \
+		*(public->end_sig) == END)
 			return ;
 	}
 }
