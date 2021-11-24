@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 16:38:52 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/11/24 08:48:25 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/24 16:29:55 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ void	print_change_state(t_philo *philo)
 	else
 		state = "died";
 	pthread_mutex_lock(philo->public->mutex_g);
-	printf("ID : %d philosopher %s --- %lld ms\n", philo->private->id, \
-	state, philo->private->change_t - philo->public->start_t);
+	printf("%lld ms    ID : %d philosopher %s\n", \
+	philo->private->change_t - philo->public->start_t, \
+	philo->private->id, state);
 	pthread_mutex_unlock(philo->public->mutex_g);
 }
 

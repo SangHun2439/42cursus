@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 16:35:16 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/11/24 08:53:57 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/24 16:22:14 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	init_private(t_philo **philos, t_public *public)
 			return (end_err_memory_lack7(philos, public, i));
 		memset(philos[i]->private, 0, sizeof(t_private));
 		philos[i]->private->id = i + 1;
-		philos[i]->private->eat_cnt = public->eat_cnt;
+		philos[i]->private->eat_cnt = 0;
 		philos[i]->private->state = THINK;
 		philos[i]->private->eat_t = public->start_t;
 		i++;

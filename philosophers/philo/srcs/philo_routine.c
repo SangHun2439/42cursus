@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 12:54:55 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/11/17 08:43:15 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/24 16:22:03 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ void	eat_routine(t_philo *philo, int id)
 	philo->private->eat_t = get_curtime();
 	print_change_state(philo);
 	philo_usleep(philo, philo->public->eat_term);
-	if (philo->private->eat_cnt != DEFAULT_EAT_CNT)
-		philo->private->eat_cnt--;
+	philo->private->eat_cnt++;
 	pthread_mutex_unlock(philo->public->forks[id % philo->public->philo_nmb]);
 	pthread_mutex_unlock(philo->public->forks[id - 1]);
 	philo->private->state = SLEEP;
@@ -65,8 +64,6 @@ void	*philo_routine(void *philo)
 	while (1)
 	{
 		if (*(((t_philo *)philo)->public->end_sig) == END)
-			return (0);
-		if ((((t_philo *)philo)->private->eat_cnt) == 0)
 			return (0);
 		if (((t_philo *)philo)->private->state == THINK)
 			think_routine(philo, ((t_philo *)philo)->private->id);

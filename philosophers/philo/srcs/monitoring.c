@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 23:12:49 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/11/24 08:45:41 by sangjeon         ###   ########.fr       */
+/*   Updated: 2021/11/24 16:22:46 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ int	is_all_eat(t_philo **philos, t_public *public)
 {
 	int	i;
 
+	if (public->eat_cnt == DEFAULT_EAT_CNT)
+		return (0);
 	i = 0;
 	while (i < public->philo_nmb)
 	{
-		if (philos[i]->private->eat_cnt != 0)
+		if (philos[i]->private->eat_cnt < public->eat_cnt)
 			return (0);
 		i++;
 	}
@@ -53,8 +55,7 @@ void	monitoring(t_philo **philos, t_public *public)
 {
 	while (1)
 	{
-		if (is_dead(philos, public) || is_all_eat(philos, public) || \
-		*(public->end_sig) == END)
+		if (is_dead(philos, public) || is_all_eat(philos, public))
 			return ;
 	}
 }
