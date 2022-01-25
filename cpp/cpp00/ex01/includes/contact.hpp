@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:13:19 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/01/24 18:55:29 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/01/25 21:41:24 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class contact
 		std::string	phone_number;
 		std::string	secret;
 	public:
+		contact(void);
 		void		set_firstname(std::string str);
 		void		set_lastname(std::string str);
 		void		set_nickname(std::string str);

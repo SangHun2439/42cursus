@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:56:43 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/01/24 19:22:26 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/01/25 21:57:03 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ class phonebook
 		contact	phbook[MAX_NUM_CONTACTS];
 		int		idx;
 		int		len;
-	public:
-		void	add(void);
-		void	search(void);
 		void	print_short(void);
 		void	print_detail(int idx);
+		void	format_print(std::string str, int end);
+	public:
+		phonebook(void);
+		void	add(void);
+		void	search(void);
 };
 
 #endif

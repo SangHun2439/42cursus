@@ -6,11 +6,16 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:55:54 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/01/24 18:45:08 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/01/25 21:35:08 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "contact.hpp"
+
+contact::contact()
+{
+
+}
 
 void	contact::set_firstname(std::string str)
 {

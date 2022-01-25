@@ -6,13 +6,19 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:40:16 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/01/24 20:20:20 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/01/25 21:56:02 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
 
-void	format_print(std::string str, int end)
+phonebook::phonebook(void)
+{
+	idx = 0;
+	len = 0;
+}
+
+void	phonebook::format_print(std::string str, int end)
 {
 	int	len;
 
@@ -87,7 +93,7 @@ void	phonebook::search(void)
 {
 	int	select;
 
-	this->print_short();
+	print_short();
 	std::cout << "select index of the desired entry :";
 	std::cin >> select;
 	if (select >= len || std::cin.fail())
@@ -97,5 +103,5 @@ void	phonebook::search(void)
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
 	else
-		this->print_detail(select);
+		print_detail(select);
 }
