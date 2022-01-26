@@ -1,9 +1,9 @@
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = phonebook
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -arch x86_64
+NAME = account
 RM = rm -f
-INC =
-SRC_DIR = ./srcs/
+INC = -I.
+SRC_DIR = ./
 SRC_NAME = Account tests
 SRCS = $(addsuffix .cpp, $(addprefix $(SRC_DIR), $(SRC_NAME)))
 OBJS = $(SRCS:.cpp=.o)
