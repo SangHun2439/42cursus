@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:40:16 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/01/25 21:56:02 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/01/29 12:01:44 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,9 @@ void	phonebook::search(void)
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
 	else
+	{
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		print_detail(select);
+	}
 }
