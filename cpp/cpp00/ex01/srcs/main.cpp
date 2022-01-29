@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:25:02 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/01/24 18:29:56 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/01/29 12:42:23 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		return (0);
 	std::cout << "Welcome to my phone book!!" << std::endl;
 	std::cout << "Please enter one of commands among EXIT, ADD and SEARCH" << std::endl;
-	while (std::cin >> input)
+	while (std::getline(std::cin, input))
 	{
 		if (input == "EXIT")
 			return (0);

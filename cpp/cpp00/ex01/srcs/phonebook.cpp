@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:40:16 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/01/29 12:01:44 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/01/29 13:18:25 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	phonebook::add(void)
 {
 	std::string	input;
 	std::cout << "please enter first name :";
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	std::getline(std::cin, input);
 	phbook[idx].set_firstname(input);
 	std::cout << "please enter last name :";
@@ -89,23 +88,33 @@ void	phonebook::add(void)
 		len++;
 }
 
+int	is_number(const char *str)
+{
+	while (*str)
+	{
+		if (!std::isdigit(*str))
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
 void	phonebook::search(void)
 {
-	int	select;
+	std::string	input;
+	int			select;
 
 	print_short();
 	std::cout << "select index of the desired entry :";
-	std::cin >> select;
-	if (select >= len || std::cin.fail())
+	std::getline(std::cin, input);
+	if (!is_number(input.c_str()))
 	{
+		std::cout << "enter only number" << std::endl;
+		return ;
+	}
+	select = std::atoi(input.c_str());
+	if (select >= len)
 		std::cout << "wrong index" << std::endl;
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	}
 	else
-	{
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		print_detail(select);
-	}
 }
