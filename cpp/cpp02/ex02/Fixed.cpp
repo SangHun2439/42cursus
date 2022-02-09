@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 18:49:49 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/09 23:55:31 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/10 01:15:19 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Fixed::Fixed(const int to_convert)
 
 Fixed::Fixed(const float to_convert)
 {
-	val = roundf( to_convert * (1 << b_fract));
+	val = roundf(to_convert * (1 << b_fract));
 }
 
 Fixed	&Fixed::operator=(const Fixed &origin)
@@ -75,22 +75,37 @@ bool	Fixed::operator!=(const Fixed &a)
 
 Fixed	Fixed::operator+(const Fixed &a)
 {
-	return (Fixed(this->toFloat() + a.toFloat()));
+	Fixed	res;
+
+	res.setRawBits( this->val + a.val );
+	return (res);
 }
 
 Fixed	Fixed::operator-(const Fixed &a)
 {
-	return (Fixed(this->toFloat() - a.toFloat()));
+	Fixed	res;
+
+	res.setRawBits( this->val - a.val );
+	return (res);
 }
 
 Fixed	Fixed::operator*(const Fixed &a)
 {
-	return (Fixed( this->toFloat() * a.toFloat()));
+	Fixed		res;
+	long long	cal_val;
+
+	cal_val = this->val;
+	cal_val *= a.val;
+	res.setRawBits( cal_val >> b_fract );
+	return (res);
 }
 
 Fixed	Fixed::operator/(const Fixed &a)
 {
-	return (Fixed( this->toFloat() / a.toFloat()));
+	Fixed	res;
+
+	res.setRawBits( (this->val << b_fract) / a.val );
+	return (res);
 }
 
 Fixed	&Fixed::operator++()
@@ -144,7 +159,7 @@ int	Fixed::toInt( void ) const
 
 float	Fixed::toFloat( void ) const
 {
-	return ((float) val / (1 << b_fract));
+	return ( (float)val / (1 << b_fract));
 }
 
 Fixed	&Fixed::min(Fixed &a, Fixed &b)
