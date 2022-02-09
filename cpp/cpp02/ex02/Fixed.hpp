@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 18:49:22 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/09 23:42:21 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/09 23:45:44 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,35 @@ class Fixed
 		Fixed(const int to_convert);
 		Fixed(const float to_convert);
 		~Fixed();
-		Fixed &operator=(const Fixed &origin);
+
+		Fixed	&operator=(const Fixed &origin);
+		bool	operator>(const Fixed &a);
+		bool	operator<(const Fixed &a);
+		bool	operator>=(const Fixed &a);
+		bool	operator<=(const Fixed &a);
+		bool	operator==(const Fixed &a);
+		bool	operator!=(const Fixed &a);
+		Fixed	operator+(const Fixed &a);
+		Fixed	operator-(const Fixed &a);
+		Fixed	operator*(const Fixed &a);
+		Fixed	operator/(const Fixed &a);
+		Fixed	&operator++();
+		Fixed	operator++(int);
+		Fixed	&operator--();
+		Fixed	operator--(int);
+
 		friend std::ostream& operator<<(std::ostream &os, const Fixed & fixed);
+
 		int		getRawBits( void ) const;
 		void	setRawBits( int const raw );
+
 		float	toFloat( void ) const;
 		int		toInt( void ) const;
+
+		static Fixed		&min(Fixed &a, Fixed &b);
+		static const Fixed	&min(const Fixed &a, const Fixed &b);
+		static Fixed		&max(Fixed &a, Fixed &b);
+		static const Fixed	&max(const Fixed &a, const Fixed &b);
 };
 
 std::ostream& operator<<(std::ostream &os, const Fixed &fixed);
