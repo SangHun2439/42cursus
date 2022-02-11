@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 18:49:49 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/10 01:15:19 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/11 14:15:12 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,8 @@ Fixed	Fixed::operator-(const Fixed &a)
 Fixed	Fixed::operator*(const Fixed &a)
 {
 	Fixed		res;
-	long long	cal_val;
 
-	cal_val = this->val;
-	cal_val *= a.val;
-	res.setRawBits( cal_val >> b_fract );
+	res.setRawBits( (((long long)this->val) * a.val) >> b_fract );
 	return (res);
 }
 
@@ -104,7 +101,7 @@ Fixed	Fixed::operator/(const Fixed &a)
 {
 	Fixed	res;
 
-	res.setRawBits( (this->val << b_fract) / a.val );
+	res.setRawBits( (((long long)this->val) << b_fract) / a.val );
 	return (res);
 }
 
@@ -164,7 +161,7 @@ float	Fixed::toFloat( void ) const
 
 Fixed	&Fixed::min(Fixed &a, Fixed &b)
 {
-	if (a.getRawBits() > b.getRawBits())
+	if (a.val > b.val)
 		return (b);
 	else
 		return (a);
@@ -172,7 +169,7 @@ Fixed	&Fixed::min(Fixed &a, Fixed &b)
 
 const Fixed	&Fixed::min(const Fixed &a, const Fixed &b)
 {
-	if (a.getRawBits() > b.getRawBits())
+	if (a.val > b.val)
 		return (b);
 	else
 		return (a);
@@ -180,7 +177,7 @@ const Fixed	&Fixed::min(const Fixed &a, const Fixed &b)
 
 Fixed		&Fixed::max(Fixed &a, Fixed &b)
 {
-	if (a.getRawBits() < b.getRawBits())
+	if (a.val < b.val)
 		return (b);
 	else
 		return (a);
@@ -188,7 +185,7 @@ Fixed		&Fixed::max(Fixed &a, Fixed &b)
 
 const Fixed	&Fixed::max(const Fixed &a, const Fixed &b)
 {
-	if (a.getRawBits() < b.getRawBits())
+	if (a.val < b.val)
 		return (b);
 	else
 		return (a);
