@@ -1,5 +1,5 @@
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = brain
 RM = rm -f
 INC = -I.
@@ -11,10 +11,10 @@ OBJS = $(SRCS:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(INC)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME) $(INC)
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
+	$(CXX) $(CXXFLAGS) -c $< -o $@ $(INC)
 
 clean:
 	$(RM) $(OBJS)

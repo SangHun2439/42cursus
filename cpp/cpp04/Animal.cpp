@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 17:18:08 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/13 17:53:18 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/13 18:58:25 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,4 @@ const std::string	&Animal::getType() const
 {
 	return (type);
 }
+
