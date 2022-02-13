@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 18:49:22 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/09 23:42:21 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/13 18:56:14 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ class Fixed
 		Fixed(const float to_convert);
 		~Fixed();
 		Fixed &operator=(const Fixed &origin);
-		friend std::ostream& operator<<(std::ostream &os, const Fixed & fixed);
 		int		getRawBits( void ) const;
 		void	setRawBits( int const raw );
 		float	toFloat( void ) const;
