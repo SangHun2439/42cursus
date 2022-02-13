@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/11 18:05:31 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/13 13:32:13 by sangjeon         ###   ########.fr       */
+/*   Created: 2022/02/11 19:34:12 by sangjeon          #+#    #+#             */
+/*   Updated: 2022/02/13 16:25:42 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
-int	main()
+# include "ClapTrap.hpp"
+# include <string>
+
+class ScavTrap: virtual public ClapTrap
 {
-	ClapTrap	a("brad");
-	ClapTrap	b;
-	ClapTrap	c(a);
+	private:
+	public:
+		ScavTrap();
+		ScavTrap(const ScavTrap &src);
+		ScavTrap(std::string name);
+		~ScavTrap();
+		ScavTrap	&operator=(const ScavTrap &src);
+		void	attack(std::string const &target);
+		void	guardGate();
+};
 
-	a.attack("joy");
-	a.takeDamage(5);
-	a.beRepaired(3);
-	b.attack("joy");
-	b.takeDamage(5);
-	b.beRepaired(3);
-	b = ClapTrap("st");
-	b.attack("joy");
-	b.takeDamage(5);
-	b.beRepaired(3);
-	c.attack("joy");
-	c.takeDamage(5);
-	c.beRepaired(3);
-}
+#endif

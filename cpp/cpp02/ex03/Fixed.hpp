@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 18:49:22 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/09 23:45:44 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/13 12:40:07 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ class Fixed
 		Fixed	operator++(int);
 		Fixed	&operator--();
 		Fixed	operator--(int);
-
-		friend std::ostream& operator<<(std::ostream &os, const Fixed & fixed);
 
 		int		getRawBits( void ) const;
 		void	setRawBits( int const raw );

@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/11 18:05:31 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/13 13:32:13 by sangjeon         ###   ########.fr       */
+/*   Created: 2022/02/11 22:34:32 by sangjeon          #+#    #+#             */
+/*   Updated: 2022/02/13 14:52:08 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
-int	main()
+# include "ClapTrap.hpp"
+# include <string>
+
+class FragTrap: public ClapTrap
 {
-	ClapTrap	a("brad");
-	ClapTrap	b;
-	ClapTrap	c(a);
+	private:
+	public:
+		FragTrap();
+		FragTrap(const FragTrap &src);
+		FragTrap(std::string name);
+		~FragTrap();
+		FragTrap	&operator=(const FragTrap &src);
+		void	highFivesGuys(void);
+		void	attack(std::string const &target);
+};
 
-	a.attack("joy");
-	a.takeDamage(5);
-	a.beRepaired(3);
-	b.attack("joy");
-	b.takeDamage(5);
-	b.beRepaired(3);
-	b = ClapTrap("st");
-	b.attack("joy");
-	b.takeDamage(5);
-	b.beRepaired(3);
-	c.attack("joy");
-	c.takeDamage(5);
-	c.beRepaired(3);
-}
+#endif

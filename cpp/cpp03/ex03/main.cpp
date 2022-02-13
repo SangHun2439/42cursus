@@ -6,29 +6,31 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 18:05:31 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/13 13:32:13 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/13 16:40:45 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "DiamondTrap.hpp"
+#include <iostream>
 
 int	main()
 {
-	ClapTrap	a("brad");
-	ClapTrap	b;
-	ClapTrap	c(a);
+	DiamondTrap	a("brad");
+	DiamondTrap	b;
+	DiamondTrap	c(a);
 
 	a.attack("joy");
-	a.takeDamage(5);
-	a.beRepaired(3);
 	b.attack("joy");
-	b.takeDamage(5);
-	b.beRepaired(3);
-	b = ClapTrap("st");
+	b = DiamondTrap("st");
 	b.attack("joy");
-	b.takeDamage(5);
-	b.beRepaired(3);
 	c.attack("joy");
-	c.takeDamage(5);
-	c.beRepaired(3);
+	a.highFivesGuys();
+	b.highFivesGuys();
+	c.highFivesGuys();
+	a.guardGate();
+	b.guardGate();
+	c.guardGate();
+	a.whoAmI();
+	b.whoAmI();
+	c.whoAmI();
 }
