@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 14:21:08 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/11 17:41:49 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/13 19:26:16 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	is_in(Point const a, Point const b, Point const c, Point const point)
 	x_d = a.getX() - b.getX();
 	y_d = a.getY() - b.getY();
 	bias = (x_d * a.getY()) - (y_d * a.getX());
-	up = (x_d * c.getX()) - (y_d * c.getX()) - bias > Fixed(0);
+	up = (x_d * c.getY()) - (y_d * c.getX()) - bias > Fixed(0);
 	test = (x_d * point.getY()) - (y_d * point.getX()) - bias > Fixed(0);
 	if (up == test)
 		return (true);
@@ -33,7 +33,7 @@ bool	is_in(Point const a, Point const b, Point const c, Point const point)
 
 bool	bsp( Point const a, Point const b, Point const c, Point const point )
 {
-	if (is_in(a, b, c, point) && is_in(b, c, a, point) && is_in(c, b, a, point))
+	if (is_in(a, b, c, point) && is_in(b, c, a, point) && is_in(c, a, b, point))
 		return (true);
 	else
 		return (false);
