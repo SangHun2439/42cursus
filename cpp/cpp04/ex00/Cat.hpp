@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/13 17:25:51 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/13 18:11:19 by sangjeon         ###   ########.fr       */
+/*   Created: 2022/02/13 17:27:04 by sangjeon          #+#    #+#             */
+/*   Updated: 2022/02/15 22:37:14 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef CAT_HPP
+# define CAT_HPP
 
-#include "Animal.hpp"
-#include <string>
+# include "Animal.hpp"
 
-class Dog:public Animal
+class Cat:public Animal
 {
-	private:
 	public:
-		Dog();
-		~Dog();
-		Dog(const Dog &src);
-		Dog	&operator=(const Dog &src);
+		Cat();
+		~Cat();
+		Cat(const Cat &src);
+		Cat	&operator=(const Cat &src);
+		void	makeSound() const;
 };
 
 #endif

@@ -6,14 +6,14 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 17:18:08 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/13 18:58:25 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/15 23:01:24 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include <iostream>
 
-Animal::Animal():type("Unknown")
+Animal::Animal():type("UnknownAnimal")
 {
 	std::cout << "Animal default constructor is called " << this->type << " is created" << std::endl;
 }
@@ -44,3 +44,7 @@ const std::string	&Animal::getType() const
 	return (type);
 }
 
+void	Animal::makeSound() const
+{
+	std::cout << "animal sound ~~~~ !" << std::endl;
+}

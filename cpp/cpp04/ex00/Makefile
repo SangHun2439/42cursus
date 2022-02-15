@@ -4,7 +4,7 @@ NAME = a.out
 RM = rm -f
 INC = -I.
 SRC_DIR = ./
-SRC_NAME = ClapTrap main ScavTrap FragTrap DiamondTrap
+SRC_NAME = main Cat Dog Animal WrongAnimal WrongCat
 SRCS = $(addsuffix .cpp, $(addprefix $(SRC_DIR), $(SRC_NAME)))
 OBJS = $(SRCS:.cpp=.o)
 

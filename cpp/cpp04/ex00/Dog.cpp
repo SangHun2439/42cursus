@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 17:25:39 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/13 18:10:46 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/15 22:38:13 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,9 @@ Dog	&Dog::operator=(const Dog &src)
 {
 	this->type = src.type;
 	return (*this);
+}
+
+void	Dog::makeSound() const
+{
+	std::cout << "Dog sound ~~~~ !" << std::endl;
 }
