@@ -8,6 +8,10 @@ SRC_NAME = main Cat Dog Animal WrongAnimal WrongCat
 SRCS = $(addsuffix .cpp, $(addprefix $(SRC_DIR), $(SRC_NAME)))
 OBJS = $(SRCS:.cpp=.o)
 
+ifeq ($(DEBUG), 1)
+	CXXFLAGS += -g
+endif
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
@@ -15,6 +19,9 @@ $(NAME): $(OBJS)
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ $(INC)
+
+debug:
+	$(CXXFLAGS) += "-g"
 
 clean:
 	$(RM) $(OBJS)
