@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 11:16:53 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/22 17:06:35 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/23 15:45:29 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Ice::Ice(const Ice &src):AMateria(src.type)
 
 Ice	&Ice::operator=(const Ice &src)
 {
-	(void)src;
+	this->type = src.type;
 	return (*this);
 }
 

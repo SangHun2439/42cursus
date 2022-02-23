@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 15:44:44 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/22 17:11:30 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/23 16:57:21 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,33 @@ MateriaSource::~MateriaSource()
 	for (int i = 0; i < MATERIAL_NUM; i++)
 	{
 		if (materials[i])
+		{
 			delete materials[i];
-		materials[i] = 0;
+			materials[i] = 0;
+		}
 	}
 }
 
 MateriaSource::MateriaSource(const MateriaSource &src)
 {
 	for (int i = 0; i < MATERIAL_NUM; i++)
-		this->materials[i] = src.materials[i];
+	{
+		if (src.materials[i])
+			this->materials[i] = src.materials[i]->clone();
+	}
 }
 
 MateriaSource	&MateriaSource::operator=(const MateriaSource &src)
 {
 	for (int i = 0; i < MATERIAL_NUM; i++)
-		this->materials[i] = src.materials[i];
+	{
+		if (materials[i])
+			delete materials[i];
+		if (src.materials[i])
+			this->materials[i] = src.materials[i]->clone();
+		else
+			materials[i] = 0;
+	}
 	return (*this);
 }
 
@@ -60,7 +72,7 @@ AMateria	*MateriaSource::createMateria(std::string const & type)
 	while (i < MATERIAL_NUM)
 	{
 		if (materials[i] && materials[i]->getType() == type)
-			return (materials[i]);
+			return (materials[i]->clone());
 		i++;
 	}
 	return (0);

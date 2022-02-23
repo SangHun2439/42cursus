@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 11:13:58 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/23 17:18:13 by sangjeon         ###   ########.fr       */
+/*   Created: 2022/02/23 13:28:46 by sangjeon          #+#    #+#             */
+/*   Updated: 2022/02/23 13:37:08 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURE_HPP
-#define CURE_HPP
+#ifndef BUREAUCRAT_HPP
+# define BUREAUCRAT_HPP
 
-#include "AMateria.hpp"
+# include <string>
 
-class Cure:public AMateria
+class Bureaucrat
 {
+	private:
+		const std::string	name;
+		int					grade;
 	public:
-		Cure();
-		Cure(const Cure &src);
-		Cure	&operator=(const Cure &src);
-		~Cure();
-
-		Cure	*clone() const;
-		void	use(ICharacter& target);
+		Bureaucrat(/* args */);
+		~Bureaucrat();
 };
+
+Bureaucrat::Bureaucrat(/* args */)
+{
+}
+
+Bureaucrat::~Bureaucrat()
+{
+}
 
 #endif

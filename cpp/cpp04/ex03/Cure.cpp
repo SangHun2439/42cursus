@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:14:00 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/22 17:06:21 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/23 15:45:39 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Cure::Cure(const Cure &src):AMateria(src.type)
 
 Cure	&Cure::operator=(const Cure &src)
 {
-	(void)src;
+	this->type = src.type;
 	return (*this);
 }
 
