@@ -5,11 +5,7 @@ RM = rm -f
 INC = -I.
 SRC_DIR = ./
 SRC_NAME = main \
-			AMateria \
-			Character \
-			Cure \
-			Ice \
-			MateriaSource
+			Bureaucrat
 SRCS = $(addsuffix .cpp, $(addprefix $(SRC_DIR), $(SRC_NAME)))
 OBJS = $(SRCS:.cpp=.o)
 
