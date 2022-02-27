@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:18:59 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/27 16:38:52 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/27 21:53:03 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ Detect&	Detect::operator=(const Detect& src)
 
 bool	Detect::isChar() const
 {
-	if (literal.size() == static_cast<size_t>(1) && !std::isdigit(static_cast<int>(literal.at(static_cast<size_t>(0)))))
+	if (literal.size() == static_cast<size_t>(1) && !static_cast<bool>(std::isdigit(static_cast<int>(literal.at(static_cast<size_t>(0))))))
 		return (true);
 	return (false);
 }
@@ -50,7 +50,7 @@ bool	Detect::isInt() const
 		i++;
 	while (i < static_cast<int>(literal.size()))
 	{
-		if (!std::isdigit(static_cast<int>(literal.at(static_cast<size_t>(i)))))
+		if (!static_cast<bool>(std::isdigit(static_cast<int>(literal.at(static_cast<size_t>(i))))))
 			return (false);
 		i++;
 	}
@@ -78,7 +78,7 @@ bool	Detect::isFloat() const
 			i++;
 			continue;
 		}
-		if (!std::isdigit(static_cast<int>(literal.at(static_cast<size_t>(i)))))
+		if (!static_cast<bool>(std::isdigit(static_cast<int>(literal.at(static_cast<size_t>(i))))))
 			return (false);
 		i++;
 	}
@@ -104,7 +104,7 @@ bool	Detect::isDouble() const
 			i++;
 			continue;
 		}
-		if (!std::isdigit(static_cast<int>(literal.at(static_cast<size_t>(i)))))
+		if (!static_cast<bool>(std::isdigit(static_cast<int>(literal.at(static_cast<size_t>(i))))))
 			return (false);
 		i++;
 	}

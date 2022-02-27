@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 18:27:55 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/27 15:15:25 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/27 22:15:03 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	IntConvert::doConvert()
 
 char	IntConvert::toChar()
 {
-	if (overflow || val > CHAR_MAX || val < CHAR_MIN)
+	if (overflow || val > static_cast<int>(CHAR_MAX) || val < static_cast<int>(CHAR_MIN))
 		throw (Convert::Impossible());
-	if (!std::isprint(static_cast<int>(static_cast<char>(val))))
+	if (!static_cast<bool>(std::isprint(static_cast<int>(static_cast<char>(val)))))
 		throw (Convert::NonDisplayable());
 	return (static_cast<char>(val));
 }

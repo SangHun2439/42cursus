@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 18:27:55 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/27 16:07:46 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/27 22:22:32 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ char	FloatConvert::toChar()
 		throw (Convert::Impossible());
 	if (std::isinf(val))
 		throw (Convert::Impossible());
-	if (!std::isprint(static_cast<int>(static_cast<char>(val))))
+	if (!static_cast<bool>(std::isprint(static_cast<int>(static_cast<char>(val)))))
 		throw (Convert::NonDisplayable());
 	return (static_cast<char>(val));
 }
 
 int	FloatConvert::toInt()
 {
-	if (overflow || val > static_cast<float>(INT_MAX) || val < static_cast<float>(INT_MIN))
+	if (overflow || static_cast<double>(val) > static_cast<double>(INT_MAX) || static_cast<double>(val) < static_cast<double>(INT_MIN))
 		throw (Convert::Impossible());
 	if (std::isnan(val))
 		throw (Convert::Impossible());

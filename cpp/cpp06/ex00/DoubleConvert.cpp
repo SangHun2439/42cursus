@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 18:27:55 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/02/27 16:07:33 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/02/27 21:54:15 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	DoubleConvert::toChar()
 		throw (Convert::Impossible());
 	if (std::isinf(val))
 		throw (Convert::Impossible());
-	if (!std::isprint(static_cast<int>(static_cast<char>(val))))
+	if (!static_cast<bool>(std::isprint(static_cast<int>(static_cast<char>(val)))))
 		throw (Convert::NonDisplayable());
 	return (static_cast<char>(val));
 }
