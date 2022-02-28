@@ -1,6 +1,6 @@
-CXX = c++
+CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = identify
+NAME = a.out
 RM = rm -f
 INC = -I.
 SRC_DIR = ./
