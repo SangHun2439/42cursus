@@ -6,12 +6,10 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:19:20 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/03/01 19:45:04 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/03/01 20:38:59 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "Array.hpp"
-#include <iostream>
 #include <iostream>
 #include "Array.hpp"
 
@@ -27,7 +25,6 @@ int main(int, char**)
         numbers[i] = value;
         mirror[i] = value;
     }
-    //SCOPE
     {
         Array<int> tmp = numbers;
         Array<int> test(tmp);
@@ -74,6 +71,6 @@ int main(int, char**)
 		std::cout << numbers[i] << " / ";
 		std::cout << mirror[i] << std::endl;
     }
-    delete [] mirror;//
+    delete [] mirror;
     return 0;
 }
