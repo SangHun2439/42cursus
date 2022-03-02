@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 21:10:46 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/03/02 00:01:05 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:12:47 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,15 @@ void	Span::addNumber(int a)
 
 unsigned int	Span::shortestSpan()
 {
+	std::vector<int>	diff;
+
 	if (arr.empty() || arr.size() == 1)
 		throw Span::ImpossbleSpan();
 	std::sort(arr.begin(), arr.end());
-	return (arr[1] - arr[0]);
+	for (std::vector<int>::iterator it = arr.begin(); it != arr.end() - 1; it++)
+		diff.push_back(*(it + 1) - *it);
+	std::sort(diff.begin(), diff.end());
+	return (diff[0]);
 }
 
 unsigned int	Span::longestSpan()
