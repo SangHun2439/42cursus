@@ -22,7 +22,7 @@ $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@ $(INC)
 
 debug:
-	$(CXXFLAGS) += "-g"
+	$(MAKE) DEBUG=1
 
 clean:
 	$(RM) $(OBJS)
