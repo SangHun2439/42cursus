@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 20:58:29 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/03/01 23:02:56 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/03/06 20:03:20 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ class Span
 			arr.clear();
 			while (f != e)
 			{
-				arr.push_back(*f);
 				if (i == size)
 					throw Span::OutOfRange();
+				arr.push_back(*f);
 				f++;
 				i++;
 			}
