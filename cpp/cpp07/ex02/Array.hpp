@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:05:12 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/03/01 19:35:08 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/03/06 19:28:49 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class Array
 		Array&	operator=(const Array& src)
 		{
 			len = src.size();
+			delete[] arr;
 			arr = new T[len];
 			for (unsigned int i = 0; i < len; i++)
 				arr[i] = src[i];
@@ -40,14 +41,26 @@ class Array
 		T&		operator[](unsigned int idx) const
 		{
 			if (idx >= this->len)
-				throw std::exception();
+				throw OutOfRange();
 			return (arr[idx]);
 		};
 		unsigned int	size() const
 		{
 			return (len);
 		};
+
+		class OutOfRange: public std::exception
+		{
+			public:
+				const char*	what() const _NOEXCEPT;
+		};
 };
+
+template <typename T>
+const char*	Array<T>::OutOfRange::what( void ) const _NOEXCEPT
+{
+	return ("Out of range Exception");
+}
 
 
 #endif

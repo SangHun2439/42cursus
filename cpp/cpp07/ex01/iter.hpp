@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:43:04 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/03/01 15:26:39 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/03/06 19:28:57 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	test_func(T a)
 }
 
 template<typename T1, typename T2>
-void	iter(T1* arr, T2 len, void(*func)(T1))
+void	iter(T1* arr, T2 len, void(*func)(T1 const &))
 {
 	T2	i;
 
