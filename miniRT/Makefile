@@ -14,8 +14,12 @@ LIB = -L$(LIB_DIR1) -L$(LIB_DIR2) -L$(LIB_DIR3) -l$(LIB_NAME1) -l$(LIB_NAME2) -l
 
 SRC_DIR = ./srcs/
 SRC_NAME = main \
-			event_operate \
-			read_objs
+			print_image \
+			camera_ray \
+			ray \
+			vec3 \
+			render \
+			objs
 SRCS = $(addsuffix .c ,$(addprefix $(SRC_DIR), $(SRC_NAME)))
 OBJS = $(SRCS:.c=.o)
 
