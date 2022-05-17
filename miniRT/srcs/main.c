@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 10:35:37 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/11 16:51:07 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/12 18:23:17 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(int argc, char **argv)
 	t_image	*image;
 	t_camera	*cam;
 	t_objs		**objs;
+	t_light		**light;
 
 	image = malloc(sizeof(t_image));
 	if (image == NULL)
@@ -52,10 +53,10 @@ int	main(int argc, char **argv)
 	image->width = 800;
 	image->height = 600;
 	image->fov = 70;
-	objs_init(&objs);
+	objs_init(&objs, &light);
 	image_init(image);
 	camera_init(cam);
-	render(image, cam, objs);
+	render(image, cam, objs, light);
 	print_image(image);
 	return (0);
 }

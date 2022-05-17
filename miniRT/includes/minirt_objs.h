@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:38:57 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/12 09:30:48 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/17 18:52:32 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_image
 typedef struct	s_objs
 {
 	int		id;
-	void	*real;
+	void	*shape;
 	t_vec3	rgb;
 }	t_objs;
 
@@ -77,6 +77,20 @@ typedef struct s_cylinder
 	float	r;
 	float	h;
 }	t_cylinder;
+
+typedef struct s_light
+{
+	int		id;
+	t_vec3	origin;
+	t_vec3	rgb;
+	float	bright;
+}	t_light;
+
+typedef struct s_surface
+{
+	t_vec3	p_hit;
+	t_vec3	n_hit;
+}	t_surface;
 
 typedef struct s_quadratic
 {

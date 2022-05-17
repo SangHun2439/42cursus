@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:52:26 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/12 09:54:35 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/17 18:53:29 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,14 @@
 # define CY 3
 # define DI 4
 
+# define A 1
+# define L 2
+
 t_ray	get_camera_ray(int x, int y, t_image *image, t_camera *cam);
 void	image_init(t_image *image);
-void	objs_init(t_objs ***objs);
-t_vec3	ray_color(t_ray *ray, t_objs **objs);
-void	render(t_image *image, t_camera *cam, t_objs **objs);
+void	objs_init(t_objs ***objs, t_light ***light);
+t_vec3	ray_color(t_ray *ray, t_objs **objs, t_light **light);
+void	render(t_image *image, t_camera *cam, t_objs **objs, t_light **light);
 void	camera_init(t_camera *camera);
 t_vec3	cam_to_world_point(const t_ray *ray, t_camera *cam);
 t_vec3	cam_to_world_vec(const t_ray *ray, t_camera *cam);
@@ -46,5 +49,10 @@ int	plane_intersect(t_plane	*pl, t_ray *ray, float *t);
 t_vec3	ray_at(float t, t_ray ray);
 int	disk_intersect(t_disk *disk, t_ray *ray, float *t);
 int	cy_intersect(t_cylinder *cy, t_ray *ray, float *t);
+void	cy_surface(t_objs *hit_obj, t_ray *ray, float t, t_surface *surface);
+void	disk_surface(t_objs *hit_obj, t_ray *ray, float t, t_surface *surface);
+void	plane_surface(t_objs *hit_obj, t_ray *ray, float t, t_surface *surface);
+void	sphere_surface(t_objs *hit_obj, t_ray *ray, float t, t_surface *surface);
+void	get_surface(t_objs *hit_obj, t_ray *ray, float t, t_surface *surface);
 
 #endif

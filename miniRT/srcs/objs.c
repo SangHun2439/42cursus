@@ -6,19 +6,43 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 15:33:37 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/12 10:33:24 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:27:03 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	objs_init(t_objs ***objs)
+void	objs_init(t_objs ***objs, t_light ***light)
 {
 	t_sphere	*sphere;
 	t_plane		*plane;
 	t_cylinder	*cylinder;
 	t_disk		*disk;
 	int			i;
+
+	*light = malloc(sizeof(t_light *) * 3);
+	i = 0;
+
+	(*light)[i] = malloc(sizeof(t_light));
+	(*light)[i]->id = A;
+	(*light)[i]->bright = 0.2;
+	(*light)[i]->rgb.e[0] = 1.0;
+	(*light)[i]->rgb.e[1] = 1.0;
+	(*light)[i]->rgb.e[2] = 1.0;
+	i++;
+
+	(*light)[i] = malloc(sizeof(t_light));
+	(*light)[i]->id = L;
+	(*light)[i]->bright = 1.0;
+	(*light)[i]->origin.e[0] = 0;
+	(*light)[i]->origin.e[1] = 100;
+	(*light)[i]->origin.e[2] = -350;
+	(*light)[i]->rgb.e[0] = 1.0;
+	(*light)[i]->rgb.e[1] = 1.0;
+	(*light)[i]->rgb.e[2] = 1.0;
+	i++;
+
+	(*light)[i] = 0;
 
 	*objs = malloc(sizeof(t_objs *) * 7);
 	i = 0;
@@ -33,7 +57,7 @@ void	objs_init(t_objs ***objs)
 	sphere->origin.e[1] = 0;
 	sphere->origin.e[2] = 50;
 	sphere->r = 20;
-	(*objs)[i]->real = sphere;
+	(*objs)[i]->shape = sphere;
 	i++;
 
 	(*objs)[i] = malloc(sizeof(t_objs));
@@ -45,11 +69,11 @@ void	objs_init(t_objs ***objs)
 	plane->origin.e[0] = 0;
 	plane->origin.e[1] = 0;
 	plane->origin.e[2] = 300;
-	plane->n.e[0] = -1;
-	plane->n.e[1] = 1;
-	plane->n.e[2] = 1;
+	plane->n.e[0] = 1;
+	plane->n.e[1] = -1;
+	plane->n.e[2] = -1;
 	plane->n = vec3_unit(plane->n);
-	(*objs)[i]->real = plane;
+	(*objs)[i]->shape = plane;
 	i++;
 
 	(*objs)[i] = malloc(sizeof(t_objs));
@@ -61,53 +85,53 @@ void	objs_init(t_objs ***objs)
 	plane->origin.e[0] = 0;
 	plane->origin.e[1] = 0;
 	plane->origin.e[2] = 200;
-	plane->n.e[0] = 1;
-	plane->n.e[1] = -1;
-	plane->n.e[2] = 1;
+	plane->n.e[0] = -1;
+	plane->n.e[1] = 1;
+	plane->n.e[2] = -1;
 	plane->n = vec3_unit(plane->n);
-	(*objs)[i]->real = plane;
+	(*objs)[i]->shape = plane;
 	i++;
 
 	(*objs)[i] = malloc(sizeof(t_objs));
 	(*objs)[i]->id = CY;
-	(*objs)[i]->rgb.e[0] = 0.0;
-	(*objs)[i]->rgb.e[1] = 0.0;
-	(*objs)[i]->rgb.e[2] = 0.0;
+	(*objs)[i]->rgb.e[0] = 0.6;
+	(*objs)[i]->rgb.e[1] = 0.8;
+	(*objs)[i]->rgb.e[2] = 0.1;
 	cylinder = malloc(sizeof(t_cylinder));
-	cylinder->origin.e[0] = -50;
-	cylinder->origin.e[1] = 0;
+	cylinder->origin.e[0] = -50.5;
+	cylinder->origin.e[1] = 10;
 	cylinder->origin.e[2] = 10;
-	cylinder->n.e[0] = 1;
-	cylinder->n.e[1] = -1;
-	cylinder->n.e[2] = 5;
+	cylinder->n.e[0] = 0;
+	cylinder->n.e[1] = 1;
+	cylinder->n.e[2] = 1;
 	cylinder->n = vec3_unit(cylinder->n);
 	cylinder->r = 14.2 / 2;
-	cylinder->h = 21.42;
-	(*objs)[i]->real = cylinder;
+	cylinder->h = 42.5;
+	(*objs)[i]->shape = cylinder;
 	i++;
 
 	(*objs)[i] = malloc(sizeof(t_objs));
 	(*objs)[i]->id = DI;
-	(*objs)[i]->rgb.e[0] = 0.2;
-	(*objs)[i]->rgb.e[1] = 0.1;
-	(*objs)[i]->rgb.e[2] = 0.3;
+	(*objs)[i]->rgb.e[0] = 0.6;
+	(*objs)[i]->rgb.e[1] = 0.8;
+	(*objs)[i]->rgb.e[2] = 0.1;
 	disk = malloc(sizeof(t_disk));
 	disk->origin = cylinder->origin;
-	disk->n = cylinder->n;
+	disk->n = vec3_multi_scalar(-1, cylinder->n);
 	disk->r = cylinder->r;
-	(*objs)[i]->real = disk;
+	(*objs)[i]->shape = disk;
 	i++;
 
 	(*objs)[i] = malloc(sizeof(t_objs));
 	(*objs)[i]->id = DI;
-	(*objs)[i]->rgb.e[0] = 0.2;
-	(*objs)[i]->rgb.e[1] = 0.1;
-	(*objs)[i]->rgb.e[2] = 0.3;
+	(*objs)[i]->rgb.e[0] = 0.6;
+	(*objs)[i]->rgb.e[1] = 0.8;
+	(*objs)[i]->rgb.e[2] = 0.1;
 	disk = malloc(sizeof(t_disk));
 	disk->origin = vec3_plus(cylinder->origin, vec3_multi_scalar(cylinder->h, cylinder->n));
 	disk->n = cylinder->n;
 	disk->r = cylinder->r;
-	(*objs)[i]->real = disk;
+	(*objs)[i]->shape = disk;
 	i++;
 
 	(*objs)[i] = 0;
@@ -134,13 +158,13 @@ int	trace(t_objs **objs, t_objs **hit_obj, t_ray *ray, float *t_near)
 int	intersect(t_objs *obj, t_ray *ray, float *t)
 {
 	if (obj->id == SP)
-		return (sphere_intersect(obj->real, ray, t));
+		return (sphere_intersect(obj->shape, ray, t));
 	if (obj->id == PL)
-		return (plane_intersect(obj->real, ray, t));
+		return (plane_intersect(obj->shape, ray, t));
 	if (obj->id == CY)
-		return (cy_intersect(obj->real, ray, t));
+		return (cy_intersect(obj->shape, ray, t));
 	if (obj->id == DI)
-		return (disk_intersect(obj->real, ray, t));
+		return (disk_intersect(obj->shape, ray, t));
 	return (0);
 }
 
@@ -198,7 +222,7 @@ int	plane_intersect(t_plane	*pl, t_ray *ray, float *t)
 	float	tmp;
 
 	tmp = vec3_dot(ray->direction, pl->n);
-	if (tmp > 1e-6)
+	if (tmp > 1e-6 || tmp < -1e-6)
 	{
 		*t = vec3_dot(vec3_minus(pl->origin, ray->origin), pl->n) / tmp;
 		if (*t >= 0)
@@ -261,4 +285,44 @@ int	cy_intersect(t_cylinder *cy, t_ray *ray, float *t)
 		return (0);
 	*t = quadratic.x0;
 	return (1);
+}
+
+void	sphere_surface(t_objs *hit_obj, t_ray *ray, float t, t_surface *surface)
+{
+	t_sphere *sphere;
+
+	sphere = hit_obj->shape;
+	surface->p_hit = ray_at(t, *ray);
+	surface->n_hit = vec3_unit(vec3_minus(surface->p_hit, sphere->origin));
+}
+
+void	plane_surface(t_objs *hit_obj, t_ray *ray, float t, t_surface *surface)
+{
+	t_plane *plane;
+
+	plane = hit_obj->shape;
+	surface->p_hit = ray_at(t, *ray);
+	surface->n_hit = plane->n;
+}
+
+void	disk_surface(t_objs *hit_obj, t_ray *ray, float t, t_surface *surface)
+{
+	t_disk *disk;
+
+	disk = hit_obj->shape;
+	surface->p_hit = ray_at(t, *ray);
+	surface->n_hit = disk->n;
+}
+
+void	cy_surface(t_objs *hit_obj, t_ray *ray, float t, t_surface *surface)
+{
+	t_cylinder *cy;
+	t_vec3		ep;
+	t_vec3		ne;
+
+	cy = hit_obj->shape;
+	surface->p_hit = ray_at(t, *ray);
+	ep = vec3_minus(surface->p_hit, cy->origin);
+	ne = vec3_multi_scalar(vec3_dot(ep, cy->n), cy->n);
+	surface->n_hit = vec3_unit(vec3_minus(ep, ne));
 }
