@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:20:15 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/17 21:25:57 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/18 12:51:40 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,17 @@ t_vec3	ambient_color(t_objs *hit_obj, t_light *light)
 int	is_shadow(t_objs **objs, t_surface *surface, t_light *light)
 {
 	t_ray	light_ray;
+	t_vec3	p_to_l;
+	float	t_max;
 	float	t;
 
-	light_ray.origin = vec3_plus(surface->p_hit, vec3_multi_scalar(1, surface->n_hit));
-	light_ray.direction = vec3_unit(vec3_minus(light->origin, light_ray.origin));
+	light_ray.origin = vec3_plus(surface->p_hit, vec3_multi_scalar(0.5, surface->n_hit));
+	p_to_l = vec3_minus(light->origin, light_ray.origin);
+	t_max = vec3_len(p_to_l);
+	light_ray.direction = vec3_unit(p_to_l);
 	while (*objs)
 	{
-		if (intersect(*objs, &light_ray, &t))
+		if (intersect(*objs, &light_ray, &t) && t < t_max)
 			return (1);
 		objs++;
 	}
@@ -66,8 +70,10 @@ int	is_shadow(t_objs **objs, t_surface *surface, t_light *light)
 t_vec3	diffuse_color(t_objs *hit_obj, t_surface *surface, t_light *light)
 {
 	float intensity;
+	t_vec3	p_to_l;
 
-	intensity = vec3_dot(surface->n_hit, vec3_unit(vec3_minus(light->origin, surface->p_hit)));
+	p_to_l = vec3_minus(light->origin, surface->p_hit);
+	intensity = vec3_dot(surface->n_hit, vec3_unit(p_to_l)) / (vec3_len_squared(p_to_l) * 0.00001);
 	if (hit_obj->id == PL && intensity < 0)
 		intensity = -intensity;
 	else if (intensity < 0)
@@ -82,10 +88,6 @@ t_vec3	specular_color(t_surface *surface, t_light *light, t_ray *ray)
 	t_vec3	r;
 	float	specular;
 
-	// r.e[0] = 0;
-	// r.e[1] = 0;
-	// r.e[2] = 0;
-	// return (r);
 	p_to_l = vec3_minus(light->origin, surface->p_hit);
 	p_to_v = vec3_unit(vec3_minus(ray->origin, surface->p_hit));
 	r = vec3_multi_scalar(2 * vec3_dot(surface->n_hit, p_to_l), surface->n_hit);

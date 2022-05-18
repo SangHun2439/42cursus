@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 15:33:37 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/17 21:27:03 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/18 12:48:17 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	objs_init(t_objs ***objs, t_light ***light)
 	(*light)[i]->bright = 1.0;
 	(*light)[i]->origin.e[0] = 0;
 	(*light)[i]->origin.e[1] = 100;
-	(*light)[i]->origin.e[2] = -350;
+	(*light)[i]->origin.e[2] = -50;
 	(*light)[i]->rgb.e[0] = 1.0;
 	(*light)[i]->rgb.e[1] = 1.0;
 	(*light)[i]->rgb.e[2] = 1.0;
@@ -70,8 +70,8 @@ void	objs_init(t_objs ***objs, t_light ***light)
 	plane->origin.e[1] = 0;
 	plane->origin.e[2] = 300;
 	plane->n.e[0] = 1;
-	plane->n.e[1] = -1;
-	plane->n.e[2] = -1;
+	plane->n.e[1] = 1;
+	plane->n.e[2] = 1;
 	plane->n = vec3_unit(plane->n);
 	(*objs)[i]->shape = plane;
 	i++;
@@ -85,9 +85,9 @@ void	objs_init(t_objs ***objs, t_light ***light)
 	plane->origin.e[0] = 0;
 	plane->origin.e[1] = 0;
 	plane->origin.e[2] = 200;
-	plane->n.e[0] = -1;
-	plane->n.e[1] = 1;
-	plane->n.e[2] = -1;
+	plane->n.e[0] = 1;
+	plane->n.e[1] = -1;
+	plane->n.e[2] = 1;
 	plane->n = vec3_unit(plane->n);
 	(*objs)[i]->shape = plane;
 	i++;
@@ -98,10 +98,10 @@ void	objs_init(t_objs ***objs, t_light ***light)
 	(*objs)[i]->rgb.e[1] = 0.8;
 	(*objs)[i]->rgb.e[2] = 0.1;
 	cylinder = malloc(sizeof(t_cylinder));
-	cylinder->origin.e[0] = -50.5;
+	cylinder->origin.e[0] = -40.5;
 	cylinder->origin.e[1] = 10;
 	cylinder->origin.e[2] = 10;
-	cylinder->n.e[0] = 0;
+	cylinder->n.e[0] = 1;
 	cylinder->n.e[1] = 1;
 	cylinder->n.e[2] = 1;
 	cylinder->n = vec3_unit(cylinder->n);
@@ -303,6 +303,8 @@ void	plane_surface(t_objs *hit_obj, t_ray *ray, float t, t_surface *surface)
 	plane = hit_obj->shape;
 	surface->p_hit = ray_at(t, *ray);
 	surface->n_hit = plane->n;
+	if (vec3_dot(surface->n_hit, ray->direction) > 0)
+		surface->n_hit = vec3_multi_scalar(-1, surface->n_hit);
 }
 
 void	disk_surface(t_objs *hit_obj, t_ray *ray, float t, t_surface *surface)
