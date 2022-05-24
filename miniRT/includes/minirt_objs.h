@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:38:57 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/17 18:52:32 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/24 19:18:21 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef	struct s_camera
 {
 	t_vec3	point;
 	t_vec3	ori;
+	int		fov;
 	float	cam_to_world_matrix[4][4];
 }	t_camera;
 
@@ -40,16 +41,8 @@ typedef struct s_image
 	int		width;
 	int		height;
 	float	ratio;
-	int		fov;
 	t_vec3	**pixel;
 }	t_image;
-
-typedef struct	s_objs
-{
-	int		id;
-	void	*shape;
-	t_vec3	rgb;
-}	t_objs;
 
 typedef struct s_sphere
 {
@@ -90,6 +83,7 @@ typedef struct s_surface
 {
 	t_vec3	p_hit;
 	t_vec3	n_hit;
+	t_vec3	to_cam;
 }	t_surface;
 
 typedef struct s_quadratic
@@ -101,6 +95,15 @@ typedef struct s_quadratic
 	float	x1;
 	float	tmp;
 }	t_quadratic;
+
+typedef struct	s_objs
+{
+	int		id;
+	void	*shape;
+	t_vec3	rgb;
+	int		(*intersect)(void *, t_ray *, float *);
+	void	(*surface)(void *, t_ray *, float t, t_surface *);
+}	t_objs;
 
 
 #endif

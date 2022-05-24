@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 13:30:05 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/11 15:50:41 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/18 16:20:13 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ t_vec3	vec3_multi_scalar(float t, t_vec3 vec3_a);
 t_vec3	vec3_div(float t, t_vec3 vec3_a);
 float	vec3_dot(t_vec3 vec3_a, t_vec3 vec3_b);
 t_vec3	vec3_cross(t_vec3 vec3_a, t_vec3 vec3_b);
+t_vec3	get_vec3_same_val(float a);
 
 #endif

@@ -28,7 +28,8 @@ SRCS = $(SRCS_DIR)ft_memset.c \
 	   $(SRCS_DIR)ft_lstadd_front.c $(SRCS_DIR)ft_lstsize.c \
 	   $(SRCS_DIR)ft_lstlast.c $(SRCS_DIR)ft_lstadd_back.c \
 	   $(SRCS_DIR)ft_lstdelone.c $(SRCS_DIR)ft_lstclear.c \
-	   $(SRCS_DIR)ft_lstiter.c $(SRCS_DIR)ft_lstmap.c
+	   $(SRCS_DIR)ft_lstiter.c $(SRCS_DIR)ft_lstmap.c \
+	   $(SRCS_DIR)ft_atof.c
 BONUS_SRCS =
 OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)

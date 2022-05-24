@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangjeon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 08:56:05 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/08/10 18:42:14 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/18 17:47:09 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
 		void (*del)(void *));
+double			ft_atof(const char *str);
 
 #endif

@@ -14,12 +14,21 @@ LIB = -L$(LIB_DIR1) -L$(LIB_DIR2) -L$(LIB_DIR3) -l$(LIB_NAME1) -l$(LIB_NAME2) -l
 
 SRC_DIR = ./srcs/
 SRC_NAME = main \
-			print_image \
+			init \
+			init2 \
+			init3 \
 			camera_ray \
+			cylinder \
+			plane \
+			sphere \
+			print_image \
+			ray_trace \
 			ray \
-			vec3 \
-			render \
-			objs
+			setcolor \
+			utils \
+			vec3f \
+			vec3f2 \
+			vec3f3
 SRCS = $(addsuffix .c ,$(addprefix $(SRC_DIR), $(SRC_NAME)))
 OBJS = $(SRCS:.c=.o)
 
