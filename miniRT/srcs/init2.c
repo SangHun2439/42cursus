@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:15:13 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/24 19:35:49 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/25 10:25:26 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,4 +128,3 @@ void	pl_init(t_objs *obj, char **element)
 	obj->intersect = plane_intersect;
 	obj->surface = plane_surface;
 }
-

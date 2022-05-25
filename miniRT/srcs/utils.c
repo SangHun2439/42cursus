@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:37:21 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/24 23:22:30 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/25 10:29:31 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	free_image(t_image *image)
 
 void	free_objs(void *objs)
 {
-	t_objs *obj;
+	t_objs	*obj;
 
 	obj = objs;
 	free(obj->shape);

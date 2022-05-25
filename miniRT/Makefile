@@ -21,14 +21,15 @@ SRC_NAME = main \
 			cylinder \
 			plane \
 			sphere \
-			print_image \
 			ray_trace \
 			ray \
 			setcolor \
 			utils \
+			utils2 \
 			vec3f \
 			vec3f2 \
-			vec3f3
+			vec3f3 \
+			event_operate
 SRCS = $(addsuffix .c ,$(addprefix $(SRC_DIR), $(SRC_NAME)))
 OBJS = $(SRCS:.c=.o)
 

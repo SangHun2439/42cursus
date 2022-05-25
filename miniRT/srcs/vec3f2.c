@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 18:53:14 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/24 18:54:16 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/25 10:26:08 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,14 @@ t_vec3	vec3_div(float t, t_vec3 vec3_a)
 {
 	t_vec3	res;
 
-	res.e[0] = vec3_a.e[0] * (1/t);
-	res.e[1] = vec3_a.e[1] * (1/t);
-	res.e[2] = vec3_a.e[2] * (1/t);
+	res.e[0] = vec3_a.e[0] * (1 / t);
+	res.e[1] = vec3_a.e[1] * (1 / t);
+	res.e[2] = vec3_a.e[2] * (1 / t);
 	return (res);
 }
 
 float	vec3_dot(t_vec3 vec3_a, t_vec3 vec3_b)
 {
-	return ((vec3_a.e[0] * vec3_b.e[0]) + (vec3_a.e[1] * vec3_b.e[1]) + (vec3_a.e[2] * vec3_b.e[2]));
+	return ((vec3_a.e[0] * vec3_b.e[0]) + \
+	(vec3_a.e[1] * vec3_b.e[1]) + (vec3_a.e[2] * vec3_b.e[2]));
 }

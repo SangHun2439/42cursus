@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:36:13 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/24 19:00:29 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/25 10:32:38 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	plane_intersect(void *shape, t_ray *ray, float *t)
 
 void	plane_surface(void *shape, t_ray *ray, float t, t_surface *surface)
 {
-	t_plane *plane;
+	t_plane	*plane;
 
 	plane = shape;
 	surface->to_cam = vec3_multi_scalar(-1, ray->direction);

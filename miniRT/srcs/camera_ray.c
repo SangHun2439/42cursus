@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:30:25 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/24 19:17:48 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/25 10:48:43 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ t_ray	get_camera_ray(int x, int y, t_image *image, t_camera *cam)
 	res.origin.e[0] = 0;
 	res.origin.e[1] = 0;
 	res.origin.e[2] = 0;
-	res.direction.e[0] = (2 * ((x + 0.5) / image->width) - 1) * tan(cam->fov / 2 * M_PI / 180) * image->ratio;
-	res.direction.e[1] = (1 - 2 * ((y + 0.5) / image->height)) * tan(cam->fov / 2 * M_PI / 180);
+	res.direction.e[0] = (2 * ((x + 0.5) / image->width) - 1) \
+	* tan(cam->fov / 2 * M_PI / 180) * image->ratio;
+	res.direction.e[1] = (1 - 2 * ((y + 0.5) / image->height)) \
+	* tan(cam->fov / 2 * M_PI / 180);
 	res.direction.e[2] = -1;
 	res.origin = cam_to_world_point(&res, cam);
 	res.direction = cam_to_world_vec(&res, cam);

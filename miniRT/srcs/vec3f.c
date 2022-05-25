@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 17:16:21 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/24 18:56:30 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/25 10:26:43 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ t_vec3	get_vec3_same_val(float a)
 
 float	vec3_len_squared(t_vec3 vec3_a)
 {
-	return ((vec3_a.e[0] * vec3_a.e[0]) + (vec3_a.e[1] * vec3_a.e[1]) + (vec3_a.e[2] * vec3_a.e[2]));
+	return ((vec3_a.e[0] * vec3_a.e[0]) + \
+	(vec3_a.e[1] * vec3_a.e[1]) + (vec3_a.e[2] * vec3_a.e[2]));
 }
 
 float	vec3_len(t_vec3 vec3_a)
@@ -53,4 +54,3 @@ t_vec3	vec3_plus(t_vec3 vec3_a, t_vec3 vec3_b)
 	res.e[2] = vec3_a.e[2] + vec3_b.e[2];
 	return (res);
 }
-

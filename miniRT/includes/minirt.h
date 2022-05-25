@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:52:26 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/24 23:12:45 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/25 11:02:37 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@
 # define SPECULAR_CONST 0.1f
 # define DISTANCE_CONST 0.0001f
 
+# define IMAGE_WIDTH 800
+# define IMAGE_HEIGHT 600
+
 t_ray	get_camera_ray(int x, int y, t_image *image, t_camera *cam);
 t_vec3	cam_to_world_point(const t_ray *ray, t_camera *cam);
 t_vec3	cam_to_world_vec(const t_ray *ray, t_camera *cam);
@@ -55,7 +58,9 @@ void	disk_surface(void *shape, t_ray *ray, float t, t_surface *surface);
 void	sphere_surface(void *shape, t_ray *ray, float t, t_surface *surface);
 void	plane_surface(void *shape, t_ray *ray, float t, t_surface *surface);
 
-void	read_file_init(char *file_name, t_camera **cam, t_list **objs, t_list **lights);
+void	read_file_init(char *file_name, t_camera **cam, \
+t_list **objs, t_list **lights);
+void	rt_init(t_minirt *rt, char *file_name);
 void	camera_init(t_camera **camera, char **element);
 void	set_cam_to_world_matrix(t_camera *camera);
 void	image_init(t_image **image);
@@ -70,7 +75,8 @@ void	disk_init(t_objs *obj_disk, const t_objs *for_cp, int direction);
 void	cy_init(t_objs *obj, char **element);
 
 void	ray_trace(t_image *image, t_camera *cam, t_list *objs, t_list *lights);
-void	trace_and_setcolor(t_ray *ray, t_list *objs, t_list *lights, t_vec3 *pixel);
+void	trace_and_setcolor(t_ray *ray, t_list *objs, \
+t_list *lights, t_vec3 *pixel);
 void	adjust_rgb(t_vec3 *pixel);
 int		trace(t_list *objs, t_objs **hit_obj, t_ray *ray, float *t_near);
 
@@ -78,11 +84,20 @@ t_vec3	ambient_color(t_objs *hit_obj, t_light *light);
 int		is_shadow(t_list *objs, t_surface *surface, t_light *light);
 t_vec3	diffuse_color(t_objs *hit_obj, t_surface *surface, t_light *light);
 t_vec3	specular_color(t_surface *surface, t_light *light);
-t_vec3	light_color(t_list *objs, t_objs *hit_obj, t_surface *surface, t_light *light);
+t_vec3	light_color(t_list *objs, t_objs *hit_obj, \
+t_surface *surface, t_light *light);
+
+int		render(t_minirt *rt);
+int		red_button_press(t_minirt *rt);
+void	quit(t_mlx *mlx);
+int		key_press(int key_code, t_minirt *rt);
 
 void	free_split(char **str_arr);
+void	free_objs(void *objs);
 int		sol_quadratic(t_quadratic *quadratic);
 void	all_free(t_image *image, t_camera *cam, t_list *objs, t_list *lights);
+int		convert_rgb(t_vec3 rgb);
+void	swap_float(float *a, float *b);
 
 void	print_image(t_image *image);
 

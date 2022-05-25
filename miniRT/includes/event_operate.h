@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:40:14 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/24 23:12:52 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/25 09:14:02 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # define X_EVENT_RED_BUTTON_PRESS 17
 
 # define KEY_ESC 53
+# define KEY_S 1
+# define KEY_R 15
 
 int	key_press(int key_code, t_minirt *rt);
 int	red_button_press(t_minirt *rt);

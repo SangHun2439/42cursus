@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:38:59 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/24 23:31:41 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/25 10:22:18 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	image_init(t_image **image)
 	(*image) = malloc(sizeof(t_image));
 	if ((*image) == NULL)
 		exit(1);
-	(*image)->width = 800;
-	(*image)->height = 600;
+	(*image)->width = IMAGE_WIDTH;
+	(*image)->height = IMAGE_HEIGHT;
 	(*image)->ratio = (float)(*image)->width / (float)(*image)->height;
 	(*image)->pixel = malloc(sizeof(t_vec3 *) * ((*image)->height));
 	if ((*image)->pixel == NULL)
@@ -40,13 +40,11 @@ void	set_cam_to_world_matrix(t_camera *camera)
 	t_vec3	forward;
 	t_vec3	right;
 	t_vec3	up;
-	t_vec3	tmp;
 
-	tmp.e[0] = 0;
-	tmp.e[1] = 1;
-	tmp.e[2] = 0;
 	forward = vec3_multi_scalar(-1, camera->ori);
-	right = vec3_cross(tmp, forward);
+	right = vec3_cross(vec3_set(0, 1, 0), forward);
+	if (vec3_len(right) < 1e-6)
+		right = vec3_cross(vec3_set(0, 0, 1), forward);
 	up = vec3_cross(forward, right);
 	camera->cam_to_world_matrix[0][0] = right.e[0];
 	camera->cam_to_world_matrix[0][1] = right.e[1];
@@ -82,7 +80,8 @@ void	camera_init(t_camera **camera, char **element)
 	set_cam_to_world_matrix(*camera);
 }
 
-void	read_file_init2(char **element, t_camera **cam, t_list **objs, t_list **lights)
+void	read_file_init2(char **element, t_camera **cam, \
+t_list **objs, t_list **lights)
 {
 	if (!ft_strncmp(element[0], "C", 1))
 		camera_init(cam, element);
@@ -98,7 +97,8 @@ void	read_file_init2(char **element, t_camera **cam, t_list **objs, t_list **lig
 		cy_obj_init(objs, element);
 }
 
-void	read_file_init(char *file_name, t_camera **cam, t_list **objs, t_list **lights)
+void	read_file_init(char *file_name, t_camera **cam, \
+t_list **objs, t_list **lights)
 {
 	int		fd;
 	char	*str;

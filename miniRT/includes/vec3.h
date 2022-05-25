@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 13:30:05 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/18 16:20:13 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/25 09:59:52 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <math.h>
 # include <stdlib.h>
 
-typedef	struct s_vec3
+typedef struct s_vec3
 {
 	float	e[3];
 }	t_vec3;
@@ -32,5 +32,6 @@ t_vec3	vec3_div(float t, t_vec3 vec3_a);
 float	vec3_dot(t_vec3 vec3_a, t_vec3 vec3_b);
 t_vec3	vec3_cross(t_vec3 vec3_a, t_vec3 vec3_b);
 t_vec3	get_vec3_same_val(float a);
+t_vec3	vec3_set(float x, float y, float z);
 
 #endif

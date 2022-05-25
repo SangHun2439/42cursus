@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:34:29 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/24 18:15:52 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/25 10:32:13 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	sphere_intersect(void *shape, t_ray *ray, float *t)
 	quadratic.a = vec3_dot(ray->direction, ray->direction);
 	quadratic.b = 2 * vec3_dot(ray->direction, l);
 	quadratic.c = vec3_dot(l, l) - (sphere->r * sphere->r);
-	if(!sol_quadratic(&quadratic))
+	if (!sol_quadratic(&quadratic))
 		return (0);
 	if (quadratic.x0 > quadratic.x1)
 	{
@@ -43,7 +43,7 @@ int	sphere_intersect(void *shape, t_ray *ray, float *t)
 
 void	sphere_surface(void *shape, t_ray *ray, float t, t_surface *surface)
 {
-	t_sphere *sphere;
+	t_sphere	*sphere;
 
 	sphere = shape;
 	surface->to_cam = vec3_multi_scalar(-1, ray->direction);

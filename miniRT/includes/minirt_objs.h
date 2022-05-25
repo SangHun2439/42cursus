@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:38:57 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/24 19:18:21 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/25 09:59:38 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,18 @@
 
 # include "vec3.h"
 # include "ray.h"
+# include "libft.h"
 
 typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*win;
+	void	*mlx_image;
+	int		*mlx_pixel;
+	int		pb;
+	int		lb;
+	int		endian;
 }	t_mlx;
-
-typedef struct s_minirt
-{
-	t_mlx	*mlx;
-
-}	t_minirt;
-
-typedef	struct s_camera
-{
-	t_vec3	point;
-	t_vec3	ori;
-	int		fov;
-	float	cam_to_world_matrix[4][4];
-}	t_camera;
 
 typedef struct s_image
 {
@@ -44,13 +36,21 @@ typedef struct s_image
 	t_vec3	**pixel;
 }	t_image;
 
+typedef struct s_camera
+{
+	t_vec3	point;
+	t_vec3	ori;
+	int		fov;
+	float	cam_to_world_matrix[4][4];
+}	t_camera;
+
 typedef struct s_sphere
 {
 	t_vec3	origin;
 	float	r;
 }	t_sphere;
 
-typedef struct	s_plane
+typedef struct s_plane
 {
 	t_vec3	origin;
 	t_vec3	n;
@@ -96,7 +96,7 @@ typedef struct s_quadratic
 	float	tmp;
 }	t_quadratic;
 
-typedef struct	s_objs
+typedef struct s_objs
 {
 	int		id;
 	void	*shape;
@@ -105,5 +105,14 @@ typedef struct	s_objs
 	void	(*surface)(void *, t_ray *, float t, t_surface *);
 }	t_objs;
 
+typedef struct s_minirt
+{
+	t_mlx		*mlx;
+	t_image		*image;
+	t_camera	*cam;
+	t_list		*objs;
+	t_list		*lights;
+	char		*file_name;
+}	t_minirt;
 
 #endif

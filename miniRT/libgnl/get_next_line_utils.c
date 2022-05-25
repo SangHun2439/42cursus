@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:41:28 by sangjeon          #+#    #+#             */
-/*   Updated: 2021/05/19 14:23:33 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/25 10:03:15 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s2)
 		return (ft_strdup(s1));
 	res_len = ft_strlen(s1) + ft_strlen(s2);
-	if (!(res = (char *)malloc(sizeof(char) * (res_len + 1))))
+	res = (char *)malloc(sizeof(char) * (res_len + 1));
+	if (!res)
 		return (0);
 	dup = res;
 	while (*s1)
@@ -69,7 +70,8 @@ char	*ft_strdup(const char *s1)
 	size_t	i;
 
 	len = ft_strlen(s1);
-	if (!(res = (char *)malloc(sizeof(char) * (len + 1))))
+	res = (char *)malloc(sizeof(char) * (len + 1));
+	if (!res)
 		return (0);
 	i = 0;
 	while (s1[i] && i < len)

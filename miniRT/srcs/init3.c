@@ -6,7 +6,7 @@
 /*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 17:13:27 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/24 19:37:19 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/25 10:30:54 by sangjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void	disk_init(t_objs *obj_disk, const t_objs *for_cp, int direction)
 	if (direction == UP)
 	{
 		disk->n = cy_for_cp->n;
-		disk->origin = vec3_plus(cy_for_cp->origin, vec3_multi_scalar(cy_for_cp->h, cy_for_cp->n));
+		disk->origin = vec3_plus(cy_for_cp->origin, \
+		vec3_multi_scalar(cy_for_cp->h, cy_for_cp->n));
 	}
 	else if (direction == DOWN)
 	{
@@ -102,4 +103,22 @@ void	cy_init(t_objs *obj, char **element)
 	cy->h = ft_atof(element[4]);
 	obj->intersect = cy_intersect;
 	obj->surface = cy_surface;
+}
+
+void	rt_init(t_minirt *rt, char *file_name)
+{
+	rt->file_name = file_name;
+	rt->mlx = malloc(sizeof(t_mlx));
+	if (!(rt->mlx))
+		exit(0);
+	rt->mlx->mlx_ptr = mlx_init();
+	rt->mlx->win = mlx_new_window(rt->mlx->mlx_ptr, \
+	rt->image->width, rt->image->height, "miniRT");
+	rt->mlx->mlx_image = mlx_new_image(rt->mlx->mlx_ptr, \
+	rt->image->width, rt->image->height);
+	rt->mlx->pb = 32;
+	rt->mlx->lb = 4 * rt->image->width;
+	rt->mlx->mlx_pixel = (int *)mlx_get_data_addr(rt->mlx->mlx_image, \
+	&(rt->mlx->pb), &(rt->mlx->lb), &(rt->mlx->endian));
+	rt->mlx->lb /= 4;
 }
