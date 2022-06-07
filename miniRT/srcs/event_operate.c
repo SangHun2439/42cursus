@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_operate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: bson <bson@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:03:16 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/25 10:21:46 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/30 13:50:39 by bson             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,13 @@ void	quit(t_mlx *mlx)
 void	reset(t_minirt *rt)
 {
 	free(rt->cam);
+	rt->cam = 0;
 	ft_lstclear(&(rt->objs), free_objs);
 	ft_lstclear(&(rt->lights), free);
-	read_file_init(rt->file_name, &(rt->cam), &(rt->objs), &(rt->lights));
+	rt->unique[UNIQUE_AMBIENT] = 0;
+	rt->unique[UNIQUE_CAMERA] = 0;
+	parser(rt->file_name, rt);
+	render(rt);
 }
 
 int	red_button_press(t_minirt *rt)

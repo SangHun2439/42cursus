@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: bson <bson@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:52:26 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/25 11:02:37 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/25 20:26:03 by bson             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include "print_image.h"
 # include "ray.h"
 # include "vec3.h"
+# include "minirt_error.h"
+# include "parser.h"
 
 # define SP 1
 # define PL 2

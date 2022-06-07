@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangjeon <sangjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: bson <bson@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 17:13:27 by sangjeon          #+#    #+#             */
-/*   Updated: 2022/05/25 10:30:54 by sangjeon         ###   ########.fr       */
+/*   Updated: 2022/05/27 15:26:28 by bson             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,6 @@ void	rt_init(t_minirt *rt, char *file_name)
 	rt->image->width, rt->image->height, "miniRT");
 	rt->mlx->mlx_image = mlx_new_image(rt->mlx->mlx_ptr, \
 	rt->image->width, rt->image->height);
-	rt->mlx->pb = 32;
-	rt->mlx->lb = 4 * rt->image->width;
 	rt->mlx->mlx_pixel = (int *)mlx_get_data_addr(rt->mlx->mlx_image, \
 	&(rt->mlx->pb), &(rt->mlx->lb), &(rt->mlx->endian));
 	rt->mlx->lb /= 4;
