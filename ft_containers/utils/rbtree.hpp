@@ -106,24 +106,21 @@ namespace ft {
 			typedef Key		key_type;
 			typedef Comp	compare_type;
 
-			typedef __tree_node<value_type>		node_type;
-			typedef __tree_node<value_type>*	node_pointer;
-			typedef ft::tree_iterator<value_type, node_type>			iterator;
-			typedef ft::tree_iterator<const value_type, node_type>		const_iterator;
-
-			typedef Alloc		allocator_type;
-			typedef typename Alloc::template rebind<node_type>::other	node_allocator;
-			typedef std::allocator_traits<node_allocator>				node_traits;
-
 			typedef std::size_t		size_type;
 			typedef std::ptrdiff_t	diffefence_type;
 
+			typedef __tree_node<value_type>								node_type;
+			typedef __tree_node<value_type>*							node_pointer;
+			typedef ft::tree_iterator<value_type, node_type>			iterator;
+			typedef ft::tree_iterator<const value_type, node_type>		const_iterator;
+			typedef typename Alloc::template rebind<node_type>::other			allocator_type;
+
 		private:
-			node_pointer	__nil;
+			node_pointer	__nil; // leaf node로 사용
 			node_pointer	__begin;
 			node_pointer	__end;
 			compare_type	__comp;
-			node_allocator	__alloc;
+			allocator_type	__alloc;
 			size_type		__size;
 
 		public:
@@ -131,12 +128,14 @@ namespace ft {
 			__rbt(const compare_type& comp, const allocator_type& alloc)
 			: __comp(comp), __alloc(alloc), __size(size_type())
 			{
+				// nill 초기화
 				__nil = __alloc.allocate(1);
 				__alloc.construct(__nil, value_type());
 				__nil->__parent = __nil;
 				__nil->__left = __nil;
 				__nil->__right = __nil;
 				__nil->__is_black = true;
+
 				__end = make_node(value_type());
 				__end->__is_black = true;
 				__begin = __end;
@@ -144,15 +143,18 @@ namespace ft {
 			__rbt(const __rbt& rbt)
 			: __comp(rbt.__comp), __alloc(rbt.__alloc), __size(size_type())
 			{
+				// nill 초기화
 				__nil = __alloc.allocate(1);
 				__alloc.construct(__nil, value_type());
 				__nil->__parent = __nil;
 				__nil->__left = __nil;
 				__nil->__right = __nil;
 				__nil->__is_black = true;
+
 				__end = make_node(value_type());
 				__end->__is_black = true;
 				__begin = __end;
+
 				insert(rbt.begin(), rbt.end());
 			}
 			~__rbt()
@@ -179,7 +181,7 @@ namespace ft {
 			size_type max_size() const
 			{
 				return std::min<size_type>(std::numeric_limits<size_type>::max(),
-						node_traits::max_size(node_allocator()));
+						__alloc.max_size());
 			}
 			bool empty() const { return __size == 0; }
 
@@ -339,10 +341,10 @@ namespace ft {
 					}
 				}
 				node_pointer cur = getRoot();
-				node_pointer tmp = __end;
+				node_pointer res = __end;
 				for ( ; cur != __nil ; )
 				{
-					tmp = cur;
+					res = cur;
 					if (__comp(val, cur->__value))
 						cur = cur->__left;
 					else if (__comp(cur->__value, val))
@@ -351,7 +353,7 @@ namespace ft {
 						return cur;
 				}
 				/* 루트 노드의 leaf가 비어있을경우 그대로 반환 */
-				return tmp;
+				return res;
 			}
 			/* parent value보다 작으면 왼쪽 크면 오른쪽 삽입 -> 해당 노드를 삽입 후 Tree 재정렬 */
 			node_pointer	__insert_tree(const value_type& val, node_pointer parent)
@@ -437,7 +439,6 @@ namespace ft {
 			void	__remove(node_pointer nd_ptr)
 			{
 				node_pointer nd_recolor;
-				node_pointer nd_fix = nd_ptr;
 				bool origin_color = __is_black_color(nd_ptr);
 				/* nd_ptr -> left leaf만 비어있을 경우 nd_ptr->right를 옮겨 link됨 */
 				if (nd_ptr->__left == __nil)
@@ -454,7 +455,7 @@ namespace ft {
 				/* left & right 모두 있을 경우 */
 				else
 				{
-					nd_fix = __min_node(nd_ptr->__right, __nil);
+					node_pointer nd_fix = __min_node(nd_ptr->__right, __nil);
 					origin_color = __is_black_color(nd_fix);
 					/* nd_fix은 left가 없으므로 옮길때 고려할 nd_recolor은 right */
 					nd_recolor = nd_fix->__right;
@@ -508,7 +509,7 @@ namespace ft {
 					/* 새로운 sibling이 black이 됨. nd_ptr을 지나는 경로의 black - 1은 유지. */
 					sibling = nd_ptr->__parent->__right;
 				}
-				/* case 2) S의 자식들이 모두 black인 경우.
+				/* case 2) S(black)의 자식들이 모두 black인 경우.
 				-> S를 red로 바꾸면 N-P 경로와 S-P 경로의 black - 1 이 됨.
 				-> P를 기준으로 rebalancing */
 				if (__is_black_color(sibling->__left) && __is_black_color(sibling->__right))
@@ -516,7 +517,7 @@ namespace ft {
 					sibling->__is_black = false;
 					nd_ptr = nd_ptr->__parent;
 				}
-				/* case 2-1) S와 S->right S가 black 인 경우 (case 1에 의해 S는 반드시 black)
+				/* case 2-1) S와 S->left는 red S->right가 black 인 경우 (case 1에 의해 S는 반드시 black)
 				-> S->left를 black으로 만들고 S를 red로 만듬. -> S기준 right_rotation
 				-> 모든 경로에서 black 노드 수는 변함 없음. */
 				else if (__is_black_color(sibling->__right))
@@ -590,11 +591,11 @@ namespace ft {
 			{
 				node_pointer ch = nd_ptr->__right;
 				nd_ptr->__right = ch->__left;
-				if (nd_ptr->__right != __nil)
-					nd_ptr->__right->__parent = nd_ptr;
+				if (nd_ptr->__right != __nil) // ch->left가 서브트리이면
+					nd_ptr->__right->__parent = nd_ptr; // 서브트리의 부모를 nd_ptr로 연결
 				node_pointer parent = nd_ptr->__parent;
 				ch->__parent = parent;
-				if (parent == __end)
+				if (parent == __end) // root의 부모는 __end
 					setRoot(ch);
 				else if (__is_left_child(nd_ptr))
 					parent->__left = ch;
@@ -638,34 +639,34 @@ namespace ft {
 			node_pointer	__lower_bound(const key_type& key) const
 			{
 				node_pointer nd_ptr = getRoot();
-				node_pointer tmp = __end;
+				node_pointer res = __end;
 				while (nd_ptr != __nil)
 				{
 					if (!__comp(nd_ptr->__value, key))
 					{
-						tmp = nd_ptr;
+						res = nd_ptr;
 						nd_ptr = nd_ptr->__left;
 					}
 					else
 						nd_ptr = nd_ptr->__right;
 				}
-				return tmp;
+				return res;
 			}
 			node_pointer	__upper_bound(const key_type& key) const
 			{
 				node_pointer nd_ptr = getRoot();
-				node_pointer tmp = __end;
+				node_pointer res = __end;
 				while (nd_ptr != __nil)
 				{
 					if (__comp(key, nd_ptr->__value))
 					{
-						tmp = nd_ptr;
+						res = nd_ptr;
 						nd_ptr = nd_ptr->__left;
 					}
 					else
 						nd_ptr = nd_ptr->__right;
 				}
-				return tmp;
+				return res;
 			}
 	};
 }
