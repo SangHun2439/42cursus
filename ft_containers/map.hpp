@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map.hpp                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jeson <jeson@student.42seoul.kr>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 18:11:35 by jeson             #+#    #+#             */
-/*   Updated: 2022/08/13 12:53:24 by jeson            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef MAP_HPP
 # define MAP_HPP
 
@@ -26,20 +14,18 @@ namespace ft {
 	class map
 	{
 		public:
-			typedef Key						key_type;
-			typedef T						mapped_type;
-			typedef ft::pair<const Key, T>	value_type;
-			typedef Compare					key_compare;
-			typedef Alloc					allocator_type;
-			typedef typename Alloc::template rebind<value_type>::other	type_allocator;
-			typedef std::allocator_traits<type_allocator>	type_traits;
-			typedef typename type_traits::pointer		pointer;
-			typedef typename type_traits::const_pointer	const_pointer;
-			typedef value_type&	reference;
-			typedef const value_type&	const_reference;
+			typedef Key									key_type;
+			typedef T									mapped_type;
+			typedef ft::pair<const Key, T>				value_type;
+			typedef Compare								key_compare;
+			typedef Alloc								allocator_type;
+			typedef typename Alloc::pointer				pointer;
+			typedef typename Alloc::const_pointer		const_pointer;
+			typedef value_type&							reference;
+			typedef const value_type&					const_reference;
 
-			typedef std::size_t	size_type;
-			typedef std::ptrdiff_t	difference_type;
+			typedef std::size_t							size_type;
+			typedef std::ptrdiff_t						difference_type;
 
 			class value_compare
 				: public std::binary_function<value_type, value_type, bool>
@@ -82,7 +68,7 @@ namespace ft {
 				: __key_comp(comp), __value_comp(comp), __rbt(__value_comp, alloc)
 			{ insert(first, last); }
 			map(const map& m) : __key_comp(m.__key_comp), __value_comp(m.__value_comp), __rbt(m.__rbt) {}
-			~map(void) {}
+			~map() {}
 
 			/* member function for util */
 			map& operator=(const map& m)
@@ -220,7 +206,6 @@ namespace ft {
 		template <class Key, class T, class Compare, class Alloc>
 		void swap(ft::map<Key, T, Compare, Alloc>& x, ft::map<Key, T, Compare, Alloc>& y)
 		{ x.swap(y); }
-
 }
 
 #endif

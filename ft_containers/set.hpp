@@ -2,7 +2,6 @@
 # define SET_HPP
 
 # include <memory>
-# include <functional>
 # include "./utils/iterator.hpp"
 # include "./utils/pair.hpp"
 # include "./utils/rbtree.hpp"
@@ -15,22 +14,20 @@ namespace ft {
 	class set
 	{
 		public:
-			typedef T					key_type;
-			typedef T					value_type;
-			typedef Compare				key_compare;
-			typedef Compare				value_compare;
-			typedef Compare				compare_type;
-			typedef Alloc				allocator_type;
+			typedef T								key_type;
+			typedef T								value_type;
+			typedef Compare							key_compare;
+			typedef Compare							value_compare;
+			typedef Compare							compare_type;
+			typedef Alloc							allocator_type;
 
-			typedef typename Alloc::template rebind<value_type>::other		type_allocator;
-			typedef std::allocator_traits<type_allocator>	type_traits;
-			typedef typename type_traits::pointer			pointer;
-			typedef typename type_traits::const_pointer		const_pointer;
+			typedef typename Alloc::pointer			pointer;
+			typedef typename Alloc::const_pointer	const_pointer;
 
-			typedef value_type&				reference;
-			typedef const value_type&		const_reference;
-			typedef std::ptrdiff_t			difference_type;
-			typedef std::size_t				size_type;
+			typedef value_type&						reference;
+			typedef const value_type&				const_reference;
+			typedef std::ptrdiff_t					difference_type;
+			typedef std::size_t						size_type;
 
 			/* iterator */
 			typedef typename ft::__rbt<const value_type, key_type, value_compare, allocator_type>::iterator			iterator;
@@ -38,6 +35,12 @@ namespace ft {
 			typedef ft::reverse_iterator<iterator>			reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>	const_reverse_iterator;
 
+		private:
+			compare_type	__comp;
+			allocator_type	__alloc;
+			ft::__rbt<const value_type, key_type, value_compare, allocator_type>	__rbt;
+
+		public:
 			/* orthdox */
 			explicit set(const compare_type& comp = compare_type(), const allocator_type& alloc = allocator_type())
 			: __comp(comp), __alloc(alloc), __rbt(comp, alloc) {}
@@ -106,11 +109,6 @@ namespace ft {
 			{ return __rbt.equal_range(val); }
 
 			allocator_type	get_allocator() const	{ return __rbt.get_allocator(); }
-
-			private:
-				compare_type	__comp;
-				allocator_type	__alloc;
-				ft::__rbt<const value_type, key_type, value_compare, allocator_type>	__rbt;
 	};
 
 	template <class T, class Compare, class Alloc>
